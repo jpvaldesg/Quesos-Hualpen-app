@@ -1,0 +1,2 @@
+class StateUpdaterController < ApplicationController
+end
