@@ -1,4 +1,7 @@
 Quesos::Application.routes.draw do
+  resources :orders
+
+
   get "mailer/readInbox"
 
   # The priority is based upon order of creation:

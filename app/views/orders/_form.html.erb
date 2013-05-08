@@ -1,0 +1,53 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :arrivalDate %><br />
+    <%= f.date_select :arrivalDate %>
+  </div>
+  <div class="field">
+    <%= f.label :arrivalTime %><br />
+    <%= f.time_select :arrivalTime %>
+  </div>
+  <div class="field">
+    <%= f.label :rut %><br />
+    <%= f.text_field :rut %>
+  </div>
+  <div class="field">
+    <%= f.label :addressId %><br />
+    <%= f.text_field :addressId %>
+  </div>
+  <div class="field">
+    <%= f.label :orderDate %><br />
+    <%= f.date_select :orderDate %>
+  </div>
+  <div class="field">
+    <%= f.label :sku %><br />
+    <%= f.number_field :sku %>
+  </div>
+  <div class="field">
+    <%= f.label :qty %><br />
+    <%= f.text_field :qty %>
+  </div>
+  <div class="field">
+    <%= f.label :unit %><br />
+    <%= f.text_field :unit %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  arrivalDate: 2013-05-08
+  arrivalTime: 2013-05-08 18:29:45
+  rut: MyString
+  addressId: MyString
+  orderDate: 2013-05-08
+  sku: 1
+  qty: 9.99
+  unit: MyString
+  state: MyString
+
+two:
+  arrivalDate: 2013-05-08
+  arrivalTime: 2013-05-08 18:29:45
+  rut: MyString
+  addressId: MyString
+  orderDate: 2013-05-08
+  sku: 1
+  qty: 9.99
+  unit: MyString
+  state: MyString
