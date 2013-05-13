@@ -343,3 +343,9 @@ Served asset /application.js - 304 Not Modified (5ms)
 
 Started GET "/assets/state_updater.js?body=1" for 127.0.0.1 at 2013-05-08 18:32:48 -0400
 Served asset /state_updater.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (25.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateOrders (20130508222945)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m

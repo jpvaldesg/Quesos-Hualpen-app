@@ -6,10 +6,6 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'xml-simple'
-gem 'gmail'
-gem 'twitter'
-gem 'google_drive'
 
 
 # Gems used only for assets and not required
