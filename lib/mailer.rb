@@ -1,5 +1,5 @@
-class Mailer
-  def self.update()
+module Mailer
+  def update()
     
 
     #Download new mails (attachments)
