@@ -1,5 +1,5 @@
 module Mailer
-  def update()
+  def load_orders()
     
 
     #Download new mails (attachments)

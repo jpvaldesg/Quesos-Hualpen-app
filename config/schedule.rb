@@ -12,7 +12,7 @@
 #   runner "MyModel.some_method"
 #   rake "some:great:rake:task"
 # end
-#
+set :environment, "development"
  every 1.minutes do
    runner "Order.read_orders"
  end

@@ -1,5 +1,5 @@
-class Reservas
-  def self.read()
+module Reservas
+  def read()
   
     require "rubygems"
     require 'google_drive'
@@ -9,10 +9,11 @@ class Reservas
     @data = []
 
     session.files.each do |file|
-      @data.push file.title
+      @data << file.title
     end 
 
     ws = session.spreadsheet_by_title('reservas').worksheets[0]
+    
     @data2 = []
     
     @data2.push [ws[1,1], ws[1,2]]
@@ -26,6 +27,8 @@ class Reservas
     ws['B3'] = var
     ws.save
 
-  return
+
+    
+
   end
 end
