@@ -1,5 +1,5 @@
 module Reservas
-  def read()
+  def view_reserves()
   
     require "rubygems"
     require 'google_drive'
@@ -26,9 +26,6 @@ module Reservas
     var = var - 3
     ws['B3'] = var
     ws.save
-
-
-    
 
   end
 end

@@ -14,7 +14,7 @@
 # end
 set :environment, "development"
  every 1.minutes do
-   runner "Order.read_orders"
+   runner "Order.process_orders"
  end
 
 # Learn more: http://github.com/javan/whenever
