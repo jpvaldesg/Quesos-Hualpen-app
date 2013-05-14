@@ -6,26 +6,13 @@ module Reservas
 
     session = GoogleDrive.login("quesoshualpentest@gmail.com", "quesos123")
 
-    @data = []
-
-    session.files.each do |file|
-      @data << file.title
-    end 
-
     ws = session.spreadsheet_by_title('reservas').worksheets[0]
-    
-    @data2 = []
-    
-    @data2.push [ws[1,1], ws[1,2]]
-    @data2.push [ws[2,1], ws[2,2]]
-    @data2.push [ws['A3'], ws.numeric_value('B3')+2]
-    @data2.push [ws['A4'], ws[4,2]]
-    @data2.push [ws['A5'], ws[5,2]]
 
-    var = ws.numeric_value('B3')
-    var = var - 3
-    ws['B3'] = var
-    ws.save
+    for row in 2..ws.num_rows
+        if ws[row,1] = "30006927"
+            return ws[row,2]
+        end
+    end
 
   end
 end
