@@ -2631,3 +2631,314 @@ Served asset /jquery_ujs.js - 304 Not Modified (17ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-15 01:25:02 -0400
 Served asset /application.js - 304 Not Modified (14ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/receive/update?almacendId=3&sku=298483" for 127.0.0.1 at 2013-05-15 01:02:07 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"3", "sku"=>"298483"}
+Completed 500 Internal Server Error in 989ms
+
+Twitter::Error::Unauthorized (Timestamp out of bounds):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (30.8ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (49.4ms)
+
+
+Started GET "/receive/update?1=a&2=b" for 127.0.0.1 at 2013-05-15 01:03:58 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"1"=>"a", "2"=>"b"}
+Completed 500 Internal Server Error in 619ms
+
+Twitter::Error::Unauthorized (Timestamp out of bounds):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.9ms)
+
+
+Started GET "/receive/update?1=a&2=b" for 127.0.0.1 at 2013-05-15 01:04:11 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"1"=>"a", "2"=>"b"}
+Completed 500 Internal Server Error in 753ms
+
+Twitter::Error::Unauthorized (Timestamp out of bounds):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.4ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.0ms)
+
+
+Started GET "/receive/update?almacendId=3&sku=298483" for 127.0.0.1 at 2013-05-15 01:04:18 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"3", "sku"=>"298483"}
+Completed 500 Internal Server Error in 735ms
+
+Twitter::Error::Unauthorized (Timestamp out of bounds):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.1ms)
+
+
+Started GET "/receive/update?almacendId=3&sku=298483" for 127.0.0.1 at 2013-05-15 01:04:46 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"3", "sku"=>"298483"}
+Completed 500 Internal Server Error in 814ms
+
+Twitter::Error::Unauthorized (Timestamp out of bounds):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started GET "/receive/update" for 127.0.0.1 at 2013-05-15 01:04:53 -0400
+Processing by ReceiveController#update as HTML
+Completed 500 Internal Server Error in 734ms
+
+Twitter::Error::Unauthorized (Timestamp out of bounds):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.6ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/receive/update" for 127.0.0.1 at 2013-05-15 01:08:22 -0400
+Processing by ReceiveController#update as HTML
+Completed 500 Internal Server Error in 850ms
+
+Twitter::Error::Unauthorized (Timestamp out of bounds):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.9ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (45.5ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/receive/update?almacendId=3&sku=21413" for 127.0.0.1 at 2013-05-15 18:22:07 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"3", "sku"=>"21413"}
+  Rendered receive/update.html.erb within layouts/application (7.6ms)
+Compiled receive.css  (35ms)  (pid 4758)
+Compiled application.css  (56ms)  (pid 4758)
+Compiled application.js  (3ms)  (pid 4758)
+Completed 200 OK in 1608ms (Views: 639.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /application.css - 200 OK (84ms)
+
+
+Started GET "/assets/manager.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /manager.css - 200 OK (4ms)
+
+
+Started GET "/assets/mailer.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /mailer.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/orders.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /orders.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/receive.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /receive.css - 200 OK (3ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /scaffolds.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/reservator.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /reservator.css - 200 OK (5ms)
+
+
+Started GET "/assets/state_updater.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /state_updater.css - 200 OK (9ms)
+
+
+Started GET "/assets/stock_manager.css?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /stock_manager.css - 200 OK (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /jquery.js - 304 Not Modified (48ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-15 18:22:09 -0400
+Served asset /application.js - 304 Not Modified (20ms)
+
+
+Started GET "/receive/update?almacendId=7&sku=02384" for 127.0.0.1 at 2013-05-15 18:27:22 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"7", "sku"=>"02384"}
+  Rendered receive/update.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1095ms (Views: 115.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/mailer.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /mailer.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/manager.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /manager.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /orders.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/reservator.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /reservator.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/state_updater.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /state_updater.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/receive.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /receive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stock_manager.css?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /stock_manager.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-15 18:27:23 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/receive/update?almacendId=7&sku=02384" for 127.0.0.1 at 2013-05-15 18:29:45 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"7", "sku"=>"02384"}
+Completed 500 Internal Server Error in 998ms
+
+Twitter::Error::Forbidden (Status is a duplicate):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.0ms)
+
+
+Started GET "/receive/update?almacendId=7&sku=02384" for 127.0.0.1 at 2013-05-15 18:30:07 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"7", "sku"=>"02384"}
+Completed 500 Internal Server Error in 886ms
+
+Twitter::Error::Forbidden (Status is a duplicate):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.1ms)
+
+
+Started GET "/receive/update?almacendId=7&sku=02384" for 127.0.0.1 at 2013-05-15 18:30:10 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"7", "sku"=>"02384"}
+Completed 500 Internal Server Error in 918ms
+
+Twitter::Error::Forbidden (Status is a duplicate):
+  app/controllers/receive_controller.rb:15:in `update'
+
+
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /home/sh/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.6ms)
+
+
+Started GET "/receive/update?almacendId=5&sku=19584" for 127.0.0.1 at 2013-05-15 18:30:42 -0400
+Processing by ReceiveController#update as HTML
+  Parameters: {"almacendId"=>"5", "sku"=>"19584"}
+  Rendered receive/update.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 1439ms (Views: 95.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/mailer.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /mailer.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/state_updater.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /state_updater.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stock_manager.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /stock_manager.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/orders.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /orders.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/receive.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /receive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/reservator.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /reservator.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/manager.css?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /manager.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-15 18:30:44 -0400
+Served asset /application.js - 304 Not Modified (2ms)
