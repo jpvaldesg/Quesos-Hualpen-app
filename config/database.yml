@@ -23,3 +23,24 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+# Base de datos externa con direcciones de clientes
+
+clients_test:
+  adapter: mysql2
+  host: localhost
+  database: direcciones_clientes
+  user: admin
+  password: "12345"
+
+clients_production:
+  adapter: mysql2
+  host: localhost
+  database: direcciones_clientes
+  user: admin
+  password: "12345"
+clients_development:
+  adapter: mysql2
+  host: localhost
+  database: direcciones_clientes
+  user: admin
+  password: "12345"
