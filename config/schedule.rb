@@ -13,8 +13,8 @@
 #   rake "some:great:rake:task"
 # end
 set :environment, "development"
- every 1.minutes do
-   runner "Order.process_orders"
+ every 10.minutes do
+   runner "Processor.start"
  end
 
 # Learn more: http://github.com/javan/whenever
