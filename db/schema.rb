@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508222945) do
+ActiveRecord::Schema.define(:version => 20130517031925) do
+
+  create_table "dispatches", :force => true do |t|
+    t.string   "direction"
+    t.string   "description"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+    t.date     "final"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "orders", :force => true do |t|
     t.date     "arrivalDate"

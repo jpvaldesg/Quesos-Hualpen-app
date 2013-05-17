@@ -1,0 +1,35 @@
+<h1>Listing dispatches</h1>
+
+<table>
+  <tr>
+    <th>Direction</th>
+    <th>Description</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Gmaps</th>
+    <th>Final</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dispatches.each do |dispatch| %>
+  <tr>
+    <td><%= dispatch.direction %></td>
+    <td><%= dispatch.description %></td>
+    <td><%= dispatch.latitude %></td>
+    <td><%= dispatch.longitude %></td>
+    <td><%= dispatch.gmaps %></td>
+    <td><%= dispatch.final %></td>
+    <td><%= link_to 'Show', dispatch %></td>
+    <td><%= link_to 'Edit', edit_dispatch_path(dispatch) %></td>
+    <td><%= link_to 'Destroy', dispatch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dispatch', new_dispatch_path %>
+
+<%= gmaps4rails(@json) %>

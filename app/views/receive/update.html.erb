@@ -1,2 +1,7 @@
 <h1>Notificación recibida</h1>
+<% if @quebrado == 1 %>
 <p>Se ha recibido exitosamente la notificación de reposición del producto sku=<%=params[:sku]%> en la bodega <%=params[:almacendId]%></p>
+<% end %>
+<% if @quebrado == 0 %>
+<p>El producto sku=<%=params[:sku]%> no presentaba registros de quiebre</p>
+<% end %>

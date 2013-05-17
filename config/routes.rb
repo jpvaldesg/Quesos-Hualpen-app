@@ -1,4 +1,7 @@
 Quesos::Application.routes.draw do
+  resources :dispatches
+
+
   get "receive/update"
 
   resources :orders

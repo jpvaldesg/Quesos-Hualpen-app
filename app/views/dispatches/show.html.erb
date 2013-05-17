@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Direction:</b>
+  <%= @dispatch.direction %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @dispatch.description %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @dispatch.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @dispatch.longitude %>
+</p>
+
+<p>
+  <b>Gmaps:</b>
+  <%= @dispatch.gmaps %>
+</p>
+
+<p>
+  <b>Final:</b>
+  <%= @dispatch.final %>
+</p>
+
+
+<%= link_to 'Edit', edit_dispatch_path(@dispatch) %> |
+<%= link_to 'Back', dispatches_path %>

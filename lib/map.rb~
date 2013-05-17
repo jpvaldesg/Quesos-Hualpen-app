@@ -1,0 +1,20 @@
+module Map
+  def new_marker(dir, desc)
+  
+    require 'gmaps4rails'
+    coordenates = Gmaps4rails.geocode(dir)
+    
+    dis = Dispatch.new()
+
+    dis[:direction] = dir
+    dis[:descpription] = desc
+    dis[:final] = "22-06-2013"
+
+    dis[:latitude] = coordenates[0][:lat]
+    dis[:longitude] = coordenates[0][:lng]
+    dis[:gmaps] = 1
+
+    dis.save
+
+  end
+end
