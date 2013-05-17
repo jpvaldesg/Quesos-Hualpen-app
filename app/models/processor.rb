@@ -4,6 +4,7 @@ class Processor < ActiveRecord::Base
   include ClientAddress
   include Reservas
   include Twit
+  include Vtiger
   # attr_accessible :title, :body
   def start()
   		pedidos=load_orders()

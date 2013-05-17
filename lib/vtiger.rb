@@ -1,5 +1,5 @@
 
-module vtiger
+module Vtiger
 
    def cargar_contacto(object_map)
     # Object_map debe ser el hash del pedido
