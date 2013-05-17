@@ -27,20 +27,23 @@ production:
 
 clients_test:
   adapter: mysql2
+  encoding: utf8
   host: localhost
   database: direcciones_clientes
-  user: admin
-  password: "12345"
+  user: root
+  password: "Ca:7w#Y1"
 
 clients_production:
   adapter: mysql2
+  encoding: utf8
   host: localhost
   database: direcciones_clientes
-  user: admin
-  password: "12345"
+  user: root
+  password: "Ca:7w#Y1"
 clients_development:
   adapter: mysql2
+  encoding: utf8
   host: localhost
   database: direcciones_clientes
-  user: admin
-  password: "12345"
+  user: root
+  password: "Ca:7w#Y1"
