@@ -17,7 +17,7 @@ module Mailer
     end
     gmail.logout
 
-
+    retorno=[]
     #Create "pedido" in DB    
     require 'xmlsimple'
     path = Dir.glob(File.join(Rails.root,'Docs/pedidos/*'))
@@ -40,9 +40,9 @@ module Mailer
       order.save
 
       File.delete(p)
-
+      retorno.push(order)
     end
 
-    return
+    return retorno
   end
 end
