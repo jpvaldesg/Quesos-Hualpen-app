@@ -1,41 +1,44 @@
-<%= form_for(@dispatch) do |f| %>
-  <% if @dispatch.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dispatch.errors.count, "error") %> prohibited this dispatch from being saved:</h2>
-
-      <ul>
-      <% @dispatch.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @dispatch, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :direction, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :direction, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :latitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :latitude, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :longitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :longitude, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :gmaps, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :gmaps, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :final, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :final, :class => 'date_select' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :direction %><br />
-    <%= f.text_field :direction %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :gmaps %><br />
-    <%= f.check_box :gmaps %>
-  </div>
-  <div class="field">
-    <%= f.label :final %><br />
-    <%= f.date_select :final %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                dispatches_path, :class => 'btn' %>
   </div>
 <% end %>

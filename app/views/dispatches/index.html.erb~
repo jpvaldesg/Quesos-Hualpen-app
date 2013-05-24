@@ -42,18 +42,6 @@
         </td>
       </tr>
     <% end %>
-     <div class="container">
-      <div class="row">
-        <div class="span1"></div>
-        <div class="span7">
-
-          <div class="flickr_pagination"><%= will_paginate @reservas, :container => false %> 
-          </div>
-
-        </div>
-        <div class="span1"></div>
-      </div>
-    </div>
   </tbody>
 </table>
 
