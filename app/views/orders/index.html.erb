@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>ID</th>
     <th>Arrivaldate</th>
     <th>Arrivaltime</th>
     <th>Rut</th>
@@ -18,6 +19,7 @@
 
 <% @orders.each do |order| %>
   <tr>
+    <td><%= order.id %></td>
     <td><%= order.arrivalDate %></td>
     <td><%= order.arrivalTime %></td>
     <td><%= order.rut %></td>
