@@ -72,6 +72,7 @@ class Processor < ActiveRecord::Base
 						end
 						cantidad_pedida-= despacho
 						despacharStock(id,sku,despacho)
+						pedido.state = "despachado"
 
 					end
 				
@@ -99,6 +100,7 @@ class Processor < ActiveRecord::Base
 						end
 						cantidad_pedida-= despacho
 						despacharStock(id,sku,despacho)
+						pedido.state = "despachado"
 
 					end
 				
