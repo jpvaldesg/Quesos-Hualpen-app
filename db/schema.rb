@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130517031925) do
 
   create_table "orders", :force => true do |t|
     t.date     "arrivalDate"
-    t.string     "arrivalTime"
+    t.time     "arrivalTime"
     t.string   "rut"
     t.string   "addressId"
     t.date     "orderDate"
