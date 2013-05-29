@@ -6,7 +6,7 @@ Quesos::Application.routes.draw do
 
   resources :orders
 
-
+  get "bodega/index"
   get "mailer/readInbox"
 
   # The priority is based upon order of creation:
