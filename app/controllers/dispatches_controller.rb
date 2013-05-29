@@ -4,9 +4,24 @@ class DispatchesController < ApplicationController
   def index
     @dispatches = Dispatch.all
 
-    @json = Dispatch.date_ok.to_gmaps4rails do |dispatch, marker|
+    #@json = Dispatch.date_ok.to_gmaps4rails do |dispatch, marker|
+	@json = Dispatch.all.to_gmaps4rails do |dispatch, marker|
       marker.infowindow dispatch[:description]
       marker.title dispatch[:direction]
+	  if dispatch.final >= Date.today
+	    marker.picture({
+          :picture => "http://es.oldversion.com/software/icons/_aim-icon.png",
+          :width   => 32,
+          :height  => 32
+          })
+	  end
+	  if dispatch.final < Date.today
+	    marker.picture({
+          :picture => "http://www.reefsanctuary.com/forums/images/avatars/Simpsons/Simpsons_-_Blinky.gif",
+          :width   => 32,
+          :height  => 32
+          })
+	  end
     end
 
     respond_to do |format|
@@ -85,4 +100,33 @@ class DispatchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def gmaps4rails_marker_picture
+    {
+      "picture" => "/images/incon.gif",
+      "width" => 20,
+      "height" => 20,
+      "marker_anchor" => [ 5, 10],
+      "shadow_width" => "110",
+      "shadow_height" => "110",
+      "shadow_anchor" => [5, 10],
+    }
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

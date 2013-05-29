@@ -1,4 +1,7 @@
 Quesos::Application.routes.draw do
+  resources :reservas
+
+
   resources :dispatches
 
 

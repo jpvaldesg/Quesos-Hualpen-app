@@ -32,4 +32,17 @@
 
 <%= link_to 'New Dispatch', new_dispatch_path %>
 
-<%= gmaps4rails(@json) %>
+<%#= gmaps4rails(@json) %>
+<%= gmaps("markers" => {"data" => @json}) %>
+
+
+
+
+
+
+
+
+
+
+
+

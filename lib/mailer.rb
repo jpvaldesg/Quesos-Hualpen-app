@@ -9,7 +9,7 @@ module Mailer
     @state = 'Conectado'
     #@num = gmail.inbox.count
     #gmail.inbox.find(:unread).each do |email|
-    gmail.inbox.find(:unread, :from => "g4tallerint@gmail.com").each do |email|
+    gmail.inbox.find(:unread).each do |email|
       folder = File.join(Rails.root,'Docs/pedidos')
       email.message.attachments.each do |f|
         File.write(File.join(folder, email.subject), f.body.decoded)
@@ -17,7 +17,7 @@ module Mailer
     end
     gmail.logout
 
-    ret[]
+    ret=[]
     #Create "pedido" in DB    
     require 'xmlsimple'
     path = Dir.glob(File.join(Rails.root,'Docs/pedidos/*'))

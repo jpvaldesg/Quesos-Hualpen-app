@@ -1,18 +1,19 @@
-module Reservas
-  def view_reserves(sku)
-  
+module Update_reservas
+ def regenerate
     require "rubygems"
     require 'google_drive'
 
     session = GoogleDrive.login("quesoshualpentest@gmail.com", "quesos123")
 
     ws = session.spreadsheet_by_title('reservas').worksheets[0]
+    
+    Reserva.delete_all
 
     for row in 2..ws.num_rows
-        if ws[row,1] = sku
-            return ws[row,2]
-        end
+        reserva = Reserva.new
+        reserva[:sku] = ws[row,1]
+        reserva[:qty] = ws[row,2]
+        reserva.save
     end
-
   end
 end
