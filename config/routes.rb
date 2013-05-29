@@ -8,6 +8,7 @@ Quesos::Application.routes.draw do
 
   get "bodega/index"
   get "mailer/readInbox"
+  get "stock/show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

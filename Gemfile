@@ -11,6 +11,8 @@ gem 'gmail'
 gem 'twitter'
 gem 'google_drive'
 gem 'gmaps4rails'
+gem 'httparty'
+gem 'json'
 
 
 # Gems used only for assets and not required
