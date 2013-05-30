@@ -9,8 +9,11 @@ Quesos::Application.routes.draw do
 
   resources :orders
 
-
+  get "bodega/index"
   get "mailer/readInbox"
+  get "stock/show"
+
+  match "/stock/:sku" => "stock#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

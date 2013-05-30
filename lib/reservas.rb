@@ -10,7 +10,7 @@ module Reservas
 
     for row in 2..ws.num_rows
         if ws[row,1] = sku
-            return ws[row,2]
+            return ws.numeric_value[row,2]
         end
     end
 

@@ -10,16 +10,15 @@ class DispatchesController < ApplicationController
       marker.title dispatch[:direction]
 	  if dispatch.final >= Date.today
 	    marker.picture({
-          :picture => "http://es.oldversion.com/software/icons/_aim-icon.png",
-          :width   => 32,
-          :height  => 32
+          :picture => "assets/truck_small.png",
+          :width   => 50,
+          :height  => 62
           })
-	  end
-	  if dispatch.final < Date.today
+	  else
 	    marker.picture({
-          :picture => "http://www.reefsanctuary.com/forums/images/avatars/Simpsons/Simpsons_-_Blinky.gif",
-          :width   => 32,
-          :height  => 32
+          :picture => "assets/ok_small.png",
+          :width   => 50,
+          :height  => 62
           })
 	  end
     end
