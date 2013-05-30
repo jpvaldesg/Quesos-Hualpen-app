@@ -1,29 +1,51 @@
 
-module Vtiger
+module Vtiger 
 
-   def cargar_contacto(object_map)
-    # Object_map debe ser el hash del pedido
-	require 'vtiger'
-	Vtiger::Api.api_settings = {
-     :username => 'admin',
-     :key => 'grupo4',
-     :url => 'integra4.ing.puc.cl',
-    }
- 	#cmd = Vtiger::Commands.new()
- 	#challenge=cmd.challenge({})
- 	#login=cmd.login({})
+require 'yaml'
+require 'rubygems'
+gem 'vtiger'
+require 'vtiger'
+require 'optparse'
+require 'java' if RUBY_PLATFORM =~ /java/
+require 'pp'
 
-   arg_hash=Vtiger::Options.parse_options(ARGV)
-   Vtiger::Options.show_usage_exit(usage) if arg_hash[:help]==true
-   require 'pp'
-  options = arg_hash
-   # set up variables using hash
-     
-    cmd = Vtiger::Commands.new()
-    cmd.challenge(options)
-    cmd.login(options)
-        
+class Vtg
+  attr_accessor :user, :key, :url, :cmd, :options
 
-    add_object(object_map,options,'OrderSales')
-	end
+  def initialize()
+  arg_hash={
+  :username => 'admin',
+  :key => 'Lrl63myYMRkXfwI3',
+  :url => 'integra4.ing.puc.cl',
+  :help => 'true',
+  
+  }
+  self.user= arg_hash[:username]
+  self.key=arg_hash[:key]
+  self.url=arg_hash[:url]
+  
+  self.options = arg_hash
+  
+  self.cmd = Vtiger::Commands.new()
+  self.cmd.challenge(options)
+  self.cmd.login(options)
+
+  end
+  def add_order(adate,atime,rut,addressid,odate,sku,qty,unit)
+userid=32
+state="Recibido"
+object_map= { 'assigned_user_id'=>"#{userid}",'Estado'=>"#{state}", 'Fecha de llegada'=>"#{adate}", 'Hora de llegada'=>"#{atime}", 'Shipping Address'=>"#{addressid}", 'Due Date'=>"#{odate}"}
+        self.cmd.add_object(object_map,self.options,'SalesOrder')
+
+   end
+ 
+end
+
+if __FILE__ == $PROGRAM_NAME
+
+      vtig= Vtg.new()
+
+vtig.add_order("2005-12-02","12:00:00","17.23.22","las loicas","2013-07-18",2132323,22,"UNI4")
+   
+end
 end
