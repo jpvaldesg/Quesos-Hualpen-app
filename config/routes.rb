@@ -13,6 +13,7 @@ Quesos::Application.routes.draw do
   get "mailer/readInbox"
   get "stock/show"
 
+  match "/bodegas" => "bodega#index"
   match "/stock/:sku" => "stock#show"
 
   # The priority is based upon order of creation:

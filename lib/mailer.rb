@@ -40,7 +40,6 @@ module Mailer
     
       order = Order.new(pedido)
       order.save
-      ret.push(order)
       File.delete(p)
       retorno.push(order)
     end
