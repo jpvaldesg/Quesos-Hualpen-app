@@ -4,6 +4,8 @@
       <%= link_to t('.new', :default => t("helpers.links.new")),
             new_dispatch_path,
             :class => 'btn btn-primary' %>
+    <%= link_to('CSV', dispatches_path(format: "csv"), :class => 'btn btn-success')  %>
+    <%= link_to('Excel', dispatches_path(format: "xls"), :class => 'btn btn-info')  %>
   </h1>
 </div>
 <table class="table table-striped">
@@ -42,6 +44,18 @@
         </td>
       </tr>
     <% end %>
+     <div class="container">
+      <div class="row">
+        <div class="span1"></div>
+        <div class="span7">
+
+          <div class="flickr_pagination"><%= will_paginate @reservas, :container => false %> 
+          </div>
+
+        </div>
+        <div class="span1"></div>
+      </div>
+    </div>
   </tbody>
 </table>
 
@@ -49,6 +63,9 @@
 
 
 <%= gmaps("markers" => {"data" => @json}) %>
+
+
+
 
 
 

@@ -16,6 +16,12 @@ class DispatchesController < ApplicationController
         :width   => 50,
         :height  => 62
         })
+      elsif dispatch.final == Date.today
+        marker.picture({
+        :picture => "assets/truck_small.png",
+        :width   => 50,
+        :height  => 62
+        })
       else
         marker.picture({
         :picture => "assets/ok_small.png",
