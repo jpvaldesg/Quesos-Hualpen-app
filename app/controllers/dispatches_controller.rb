@@ -1,26 +1,34 @@
 class DispatchesController < ApplicationController
+  require 'will_paginate'
+
   # GET /dispatches
   # GET /dispatches.json
   def index
-    @dispatches = Dispatch.all
+    @dispatches = Dispatch.paginate(:page => params[:page], :per_page => 10)
 
     #@json = Dispatch.date_ok.to_gmaps4rails do |dispatch, marker|
-	@json = Dispatch.all.to_gmaps4rails do |dispatch, marker|
+    @json = Dispatch.all.to_gmaps4rails do |dispatch, marker|
       marker.infowindow dispatch[:description]
       marker.title dispatch[:direction]
-	  if dispatch.final >= Date.today
-	    marker.picture({
-          :picture => "assets/truck_small.png",
-          :width   => 50,
-          :height  => 62
-          })
-	  else
-	    marker.picture({
-          :picture => "assets/ok_small.png",
-          :width   => 50,
-          :height  => 62
-          })
-	  end
+      if dispatch.final > Date.today
+        marker.picture({
+        :picture => "assets/wait_small.png",
+        :width   => 50,
+        :height  => 62
+        })
+      elsif dispatch.final == Date.today
+        marker.picture({
+        :picture => "assets/truck_small.png",
+        :width   => 50,
+        :height  => 62
+        })
+      else
+        marker.picture({
+        :picture => "assets/ok_small.png",
+        :width   => 50,
+        :height  => 62
+        })
+      end
     end
 
     respond_to do |format|

@@ -9,10 +9,59 @@
   <%= javascript_include_tag 'gmaps4rails/gmaps4rails.googlemaps.js' %>
   <%= javascript_include_tag 'gmaps4rails/gmaps4rails.mapquest.js' %>
   <%= javascript_include_tag 'gmaps4rails/gmaps4rails.openlayers.js' %>
+  <%= javascript_include_tag "jquery-1.10.1.min", "highcharts" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= yield %>
-<%= yield :scripts %>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand">Integra4</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Reservas", reservas_path %></li>
+            <li><%= link_to "Dispatches", dispatches_path %></li>
+            <li><%= link_to "algo1" %></li>
+            <li><%= link_to "algo2" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="span9">
+        <%= yield %>
+        <%= yield :scripts %>
+      </div>
+      <div class="span3">
+        <h2>Twitter</h2>
+        <a class="twitter-timeline" href="https://twitter.com/QuesosHualpen4" data-widget-id="342634870478082048">Tweets por @QuesosHualpen4</a>
+        <script>
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        </script>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
