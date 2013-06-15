@@ -37,7 +37,7 @@ class Vtg
               field='cf_640'
               name=rut
        
-                 puts "in query element by field #{field} #{element} name: #{name}"
+                 #puts "in query element by field #{field} #{element} name: #{name}"
                     action_string=ERB::Util.url_encode("select id,accountname from #{element} where #{field} like '#{name}';")
                     
                     res = self.cmd.http_ask_get(self.cmd.endpoint_url+"operation=query&sessionName=#{self.cmd.session_name}&query="+action_string)
@@ -81,7 +81,7 @@ class Vtg
 
 }
                      return  object_map
-               puts "Consulta realizada"
+               #puts "Consulta realizada"
   end  
    def order_id_query(order_id)
               element='SalesOrder'
@@ -101,7 +101,7 @@ class Vtg
 
 }
                      return  object_map
-               puts "Consulta realizada"
+               #puts "Consulta realizada"
   end  
   def add_order(order_id, adate,atime,rut,addressid,odate,sku,qty,unit)
 product=self.product_query(sku)
