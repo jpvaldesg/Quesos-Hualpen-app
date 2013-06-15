@@ -11,7 +11,7 @@ gem 'gmail'
 gem 'twitter'
 gem 'google_drive'
 gem 'gmaps4rails'
-
+gem 'databasedotcom'
 gem 'vtiger'
 gem 'whenever'
 gem 'yajl-ruby'
@@ -40,7 +40,7 @@ gem 'jquery-rails'
 
 
 #gem 'activerecord-mysql2-adapter'
-gem 'mysql2'
+#gem 'mysql2'
 gem 'therubyracer'
 gem 'execjs'
 # To use ActiveModel has_secure_password
