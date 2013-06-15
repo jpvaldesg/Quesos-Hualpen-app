@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Fecha Llegada</Data></Cell>
+        <Cell><Data ss:Type="String">Hora Llegada</Data></Cell>
+        <Cell><Data ss:Type="String">Rut</Data></Cell>
+        <Cell><Data ss:Type="String">Id Dirección</Data></Cell>
+        <Cell><Data ss:Type="String">Fecha Pedido</Data></Cell>
+        <Cell><Data ss:Type="String">Sku</Data></Cell>
+        <Cell><Data ss:Type="String">Cantidad</Data></Cell>
+        <Cell><Data ss:Type="String">Unidad</Data></Cell>
+        <Cell><Data ss:Type="String">Estado</Data></Cell>
+        <Cell><Data ss:Type="String">Costo</Data></Cell>
+        <Cell><Data ss:Type="String">Precio</Data></Cell>
+      </Row>
+    <% @orders.each do |order| %>
+      <Row>
+        <Cell><Data ss:Type="Date"><%= order.arrivalDate %></Data></Cell>
+        <Cell><Data ss:Type="Time"><%= order.arrivalTime %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.rut %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.addressId %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= order.orderDate %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= order.sku %></Data></Cell>
+        <Cell><Data ss:Type="Decimal"><%= order.qty %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.unit %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.state %></Data></Cell>
+        <Cell><Data ss:Type="Float"><%= order.cost %></Data></Cell>
+        <Cell><Data ss:Type="Float"><%= order.price %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+
+

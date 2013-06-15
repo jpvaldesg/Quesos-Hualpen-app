@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606161328) do
+ActiveRecord::Schema.define(:version => 20130606212948) do
 
   create_table "dispatches", :force => true do |t|
     t.string   "direction"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20130606161328) do
     t.string   "state"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.float    "cost"
+    t.float    "price"
   end
 
   create_table "processors", :force => true do |t|

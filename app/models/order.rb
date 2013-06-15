@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   require 'reservas'
   extend Mailer
   extend Reservas
-  attr_accessible :addressId, :arrivalDate, :arrivalTime, :orderDate, :qty, :rut, :sku, :state, :unit
+  attr_accessible :addressId, :arrivalDate, :arrivalTime, :orderDate, :qty, :rut, :sku, :state, :unit, :cost, :price
  
   def self.process_orders
   	 load_orders()
@@ -16,5 +16,14 @@ class Order < ActiveRecord::Base
   def self.quebrado
     Order.find(:all, :conditions => [ "state = ?", "quebrado"])
   end
+
+  def self.price_on(date)
+    where("date(orderDate) = ?",date).sum(:price)
+  end
+
+  def self.cost_on(date)
+    where("date(orderDate) = ?",date).sum(:cost)
+  end
+
 
 end

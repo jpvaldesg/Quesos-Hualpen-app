@@ -1,7 +1,15 @@
-<h1>Listing orders</h1>
+<%- model_class = Order -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_order_path,
+            :class => 'btn btn-primary' %>
+    <%= link_to('CSV', orders_path(format: "csv"), :class => 'btn btn-info')  %>
+    <%= link_to('Excel', orders_path(format: "xls"), :class => 'btn btn-success')  %></h1>git
+</div>
 
-
-<div id="orders_chart" style="width: 560px; height: 300px;">
+<!--<div id="orders_chart" style="width: 800px; height: 300px;">-->
+<div id="orders_chart" style=" height: 300px;">
   
 
   <script type="text/javascript" charset="utf-8">
@@ -13,11 +21,30 @@
     yAxis: {
       title: { text: 'Pesos' }
     },
+    tooltip: {
+      formatter: function () {
+        return Highcharts.dateFormat("%B %e %Y", this.x) + ': ' +
+          '$' + Highcharts.numberFormat(this.y, 2);
+      }
+    },
+
     series: [{
-      name: 'ventas',
+      name: "Gastos",
       pointInterval: <%= 1.day * 1000 %>,
       pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
-      data: [1, 2, 5, 7, 3]
+      data: <%= (3.weeks.ago.to_date..Date.today).map { |date| Order.price_on(date).to_f}.inspect %>
+    },
+    {
+      name: "Ingresos",
+      pointInterval: <%= 1.day * 1000 %>,
+      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
+      data: <%= (3.weeks.ago.to_date..Date.today).map { |date| Order.cost_on(date).to_f}.inspect %>
+    },
+    {
+      name: "Utilidades",
+      pointInterval: <%= 1.day * 1000 %>,
+      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
+      data: <%= (3.weeks.ago.to_date..Date.today).map { |date| (Order.price_on(date).to_f - Order.cost_on(date).to_f)}.inspect %>
     }]
   });
 });
@@ -26,42 +53,61 @@
 
 </div>
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:arrivalDate) %></th>
+      <th><%= model_class.human_attribute_name(:rut) %></th>
+      <th><%= model_class.human_attribute_name(:addressId) %></th>
+      <th><%= model_class.human_attribute_name(:orderDate) %></th>
+      <th><%= model_class.human_attribute_name(:sku) %></th>
+      <th><%= model_class.human_attribute_name(:qty) %></th>
+      <th><%= model_class.human_attribute_name(:unit) %></th>
+      <th><%= model_class.human_attribute_name(:state) %></th>
+      <th><%= model_class.human_attribute_name(:cost) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.id, order_path(order) %></td>
+        <td><%= order.arrivalDate %></td>
+        <td><%= order.rut %></td>
+        <td><%= order.addressId %></td>
+        <td><%= order.orderDate %></td>
+        <td><%= order.sku %></td>
+        <td><%= order.qty %></td>
+        <td><%= order.unit %></td>
+        <td><%= order.state %></td>
+        <td><%= order.cost %></td>
+        <td><%= order.price %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_order_path(order), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      order_path(order),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+     <div class="container">
+      <div class="row">
+        <div class="span1"></div>
+        <div class="span7">
 
+          <div class="flickr_pagination"><%= will_paginate @reservas, :container => false %> 
+          </div>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Arrivaldate</th>
-    <th>Arrivaltime</th>
-    <th>Rut</th>
-    <th>Addressid</th>
-    <th>Orderdate</th>
-    <th>Sku</th>
-    <th>Qty</th>
-    <th>Unit</th>
-    <th>State</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.id %></td>
-    <td><%= order.arrivalDate %></td>
-    <td><%= order.arrivalTime %></td>
-    <td><%= order.rut %></td>
-    <td><%= order.addressId %></td>
-    <td><%= order.orderDate %></td>
-    <td><%= order.sku %></td>
-    <td><%= order.qty %></td>
-    <td><%= order.unit %></td>
-    <td><%= order.state %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+        </div>
+        <div class="span1"></div>
+      </div>
+    </div>
+  </tbody>
 </table>
 
 <%= button_to "Run process Start", :action => "run_process", :controller => "order" %>
@@ -69,3 +115,4 @@
 <br />
 
 <%= link_to 'New Order', new_order_path %>
+
