@@ -1,35 +1,87 @@
-<h1>Listing dispatches</h1>
+<%- model_class = Dispatch -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_dispatch_path,
+            :class => 'btn btn-primary' %>
+    <%= link_to('CSV', dispatches_path(format: "csv"), :class => 'btn btn-info')  %>
+    <%= link_to('Excel', dispatches_path(format: "xls"), :class => 'btn btn-success')  %>
+  </h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:direction) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:latitude) %></th>
+      <th><%= model_class.human_attribute_name(:longitude) %></th>
+      <th><%= model_class.human_attribute_name(:gmaps) %></th>
+      <th><%= model_class.human_attribute_name(:final) %></th>
+      <!--<th><%= model_class.human_attribute_name(:created_at) %></th>-->
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dispatches.each do |dispatch| %>
+      <tr>
+        <td><%= link_to dispatch.id, dispatch_path(dispatch) %></td>
+        <td><%= dispatch.direction %></td>
+        <td><%= dispatch.description %></td>
+        <td><%= dispatch.latitude %></td>
+        <td><%= dispatch.longitude %></td>
+        <td><%= dispatch.gmaps %></td>
+        <td><%= dispatch.final %></td>
+        <!--<td><%=l dispatch.created_at %></td>-->
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_dispatch_path(dispatch), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      dispatch_path(dispatch),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+     <div class="container">
+      <div class="row">
+        <div class="span1"></div>
+        <div class="span7">
 
-<table>
-  <tr>
-    <th>Direction</th>
-    <th>Description</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Gmaps</th>
-    <th>Final</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+          <div class="flickr_pagination"><%= will_paginate @reservas, :container => false %> 
+          </div>
 
-<% @dispatches.each do |dispatch| %>
-  <tr>
-    <td><%= dispatch.direction %></td>
-    <td><%= dispatch.description %></td>
-    <td><%= dispatch.latitude %></td>
-    <td><%= dispatch.longitude %></td>
-    <td><%= dispatch.gmaps %></td>
-    <td><%= dispatch.final %></td>
-    <td><%= link_to 'Show', dispatch %></td>
-    <td><%= link_to 'Edit', edit_dispatch_path(dispatch) %></td>
-    <td><%= link_to 'Destroy', dispatch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+        </div>
+        <div class="span1"></div>
+      </div>
+    </div>
+  </tbody>
 </table>
 
-<br />
 
-<%= link_to 'New Dispatch', new_dispatch_path %>
 
-<%= gmaps4rails(@json) %>
+
+<%= gmaps("markers" => {"data" => @json}) %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,7 +13,7 @@
 #   rake "some:great:rake:task"
 # end
 set :environment, "development"
- every 10.minutes do
+ every 3.minutes do
    runner "Processor.start"
  end
 

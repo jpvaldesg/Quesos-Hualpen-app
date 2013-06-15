@@ -1,0 +1,11 @@
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+
+  
+  def twitter
+    require 'twitter'
+    @tweets = Twitter.user_timeline('@QuesosHualpen4').first(10)
+    render :layout => false
+  end
+
+end

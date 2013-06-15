@@ -1,13 +1,19 @@
 class Processor < ActiveRecord::Base
-	include Mailer
-	include Map
-	include ClientAddress
-	include Reservas
-	include Twit
-	include Vtiger
-	include Stocks
+	require 'mailer'
+	extend Mailer
+	require 'map'
+	extend Map
+	require 'client_address'
+	extend ClientAddress
+	require 'reservas'
+	extend Reservas
+	require 'vtiger'
+	extend Vtiger
+	require 'stocks'
+	extend Stocks
 	# attr_accessible :title, :body
-	def start()
+	def self.start()
+		
 		pedidos=load_orders()	    
 		
 		pedidos.each do |pedido|
@@ -17,22 +23,18 @@ class Processor < ActiveRecord::Base
 			total_disponible = 0
 			almacenes = {}
 
-			#Calculamos el total disponible en bodega
-			getStock(sku).each do |stock|
-				
-				almacenId = stock["almacenId"]
 
-				if almacenId == 45 or almacenId == 102
-					almacenes[almacenId] =  stock["libre"]
-					total_disponible+= stock["libre"]
-				end
+			#Calculamos el total disponible en bodega
+			getStock(sku).each do |stock|	
+				almacenId = stock["almacenId"]
+				total_disponible+= stock["libre"]
 			end
 
 		  #Si hay reservas para el sku del pedido
 		  if Reserva.exists?(:sku => pedido["sku"]) 
 		
 				reserva = Reserva.find_by_sku(pedido["sku"])
-				total_despachable
+				
 				
 				#Si Qal es quien hace el pedido
 				if pedido["rut"]== "34.242.924-1" 

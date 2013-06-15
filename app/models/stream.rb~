@@ -1,0 +1,41 @@
+    require 'twitter'  
+    class Stream  
+      
+    attr_accessor :id, :user, :name, :message, :photo, :time  
+    class << self  
+      
+      def twitter_stream
+
+          Twitter.configure do |config|
+            config.consumer_key = 'Qm7locVYddR3x7Nl36i4yw'
+            config.consumer_secret = 'JNe6ZvbsiVsLrXISMCs2nD2NfQntPs5rsD2O0fL1PA'
+            config.oauth_token = '1424454499-60n2fEDDZlZOHrLNShosNL9MyUu6AKnmCN9sakG'
+            config.oauth_token_secret = 'AOWXckklgFPqwxMLrq55NvnTSZHylWmMKNvVP5NG2A'
+          end
+
+          timelines = Twitter.user_timeline('@QuesosHualpen4').first(10)
+  
+          #return nil if user.twitter_username.blank? or user.twitter_password.blank?  
+          #httpauth = Twitter::HTTPAuth.new(user.twitter_username, user.twitter_password)  
+          #client = Twitter::Base.new(httpauth)  
+          #timelines = client.friends_timeline  
+          #return nil unless timelines.is_a?(Array)  
+
+          streams = []  
+          timelines.each do |timeline|  
+            stream = Stream.new  
+            stream.message = timeline.text  
+            stream.id = timeline.id.to_s+"_twitter"  
+            stream.time = timeline.created_at  
+            stream.name = (timeline.user.screen_name rescue nil)  
+            # if timeline.user.profile_image_url is nil, you can add your application's custom default image  
+            stream.photo = (timeline.user.profile_image_url rescue nil)  
+            stream.user = stream.name ? User.find_by_twitter(stream.name) : nil  
+            streams << stream  
+          end   
+          return streams  
+        end  
+      
+      end  
+      
+    end  

@@ -1,4 +1,10 @@
 Quesos::Application.routes.draw do
+  resources :productos
+
+
+  resources :reservas
+
+
   resources :dispatches
 
 
@@ -9,6 +15,9 @@ Quesos::Application.routes.draw do
   get "bodega/index"
   get "mailer/readInbox"
   get "stock/show"
+
+  match "/bodegas" => "bodega#index"
+  match "/stock/:sku" => "stock#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

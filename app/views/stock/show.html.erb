@@ -1,6 +1,4 @@
 <h1>Stock sku:<%= params[:sku] %></h1>
-<%= @almacenes[0].inspect%>
-<%= @almacenes[1].inspect%>
 <table>
 	<tr>
 		<th>AlmacenID</th>
@@ -8,7 +6,7 @@
 	</tr>
 <% @almacenes.each do |almacen| %>
 		<tr>
-			<td><%=almacen["almacenId"] %></td>
+			<td><%= almacen["almacenId"] %></td>
 			<td><%= almacen["libre"] %></td>
 	</tr>
 <% end %>

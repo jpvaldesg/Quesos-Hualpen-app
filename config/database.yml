@@ -31,7 +31,7 @@ clients_test:
   host: localhost
   database: direcciones_clientes
   user: root
-  password: "12345"
+  password: "Ca:7w#Y1"
 
 clients_production:
   adapter: mysql2
@@ -39,12 +39,11 @@ clients_production:
   host: localhost
   database: direcciones_clientes
   user: root
-  password: "12345"
-
+  password: "Ca:7w#Y1"
 clients_development:
   adapter: mysql2
   encoding: utf8
   host: localhost
   database: direcciones_clientes
   user: root
-  password: "12345"
+  password: "Ca:7w#Y1"

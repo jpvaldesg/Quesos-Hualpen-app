@@ -1,0 +1,20 @@
+<%= form_for @reserva, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :sku, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sku, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :qty, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :qty, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                reservas_path, :class => 'btn' %>
+  </div>
+<% end %>

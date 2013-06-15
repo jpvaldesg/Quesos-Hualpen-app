@@ -9,7 +9,7 @@ module Mailer
     @state = 'Conectado'
     #@num = gmail.inbox.count
     #gmail.inbox.find(:unread).each do |email|
-    gmail.inbox.find(:unread, :from => "g4tallerint@gmail.com").each do |email|
+    gmail.inbox.find(:unread).each do |email|
       folder = File.join(Rails.root,'Docs/pedidos')
       email.message.attachments.each do |f|
         File.write(File.join(folder, email.subject), f.body.decoded)
@@ -17,17 +17,19 @@ module Mailer
     end
     gmail.logout
 
-<<<<<<< HEAD
+
     retorno=[]
-=======
-    ret[]
->>>>>>> 0c92eed3dedfff1f29144d9eb8bbc4ce499f2973
+
     #Create "pedido" in DB    
     require 'xmlsimple'
+    require 'stocks'
     path = Dir.glob(File.join(Rails.root,'Docs/pedidos/*'))
     path.each do |p|
 
       aux = XmlSimple.xml_in(p, {'KeyAttr' => 'name'})
+      sku = aux['Pedidos'][0]['Pedido'][0]['sku'][0]
+      compra = Stocks.getSkuInfo(sku)
+      venta = Producto.by_sku(sku) 
 
       #Importante: cambiar adressId -> addresId!!!
       pedido = {'arrivalDate' => aux['Pedidos'][0]['fecha'],
@@ -38,19 +40,17 @@ module Mailer
 		'sku' => aux['Pedidos'][0]['Pedido'][0]['sku'][0],
 		'qty' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['content'],
 		'unit' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['unidad'],
-		'state' => 'recibido'}
+		'state' => 'recibido',
+		'cost' => compra["costo"].to_f,
+		'price' => venta["precio"]}
     
       order = Order.new(pedido)
       order.save
-      ret.push(order)
       File.delete(p)
       retorno.push(order)
     end
 
-<<<<<<< HEAD
     return retorno
-=======
-    return ret
->>>>>>> 0c92eed3dedfff1f29144d9eb8bbc4ce499f2973
+
   end
 end

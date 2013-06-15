@@ -1,17 +1,41 @@
 class DispatchesController < ApplicationController
+  require 'will_paginate'
+
   # GET /dispatches
   # GET /dispatches.json
   def index
-    @dispatches = Dispatch.all
+    @dispatches = Dispatch.paginate(:page => params[:page], :per_page => 10)
 
-    @json = Dispatch.date_ok.to_gmaps4rails do |dispatch, marker|
+    #@json = Dispatch.date_ok.to_gmaps4rails do |dispatch, marker|
+    @json = Dispatch.all.to_gmaps4rails do |dispatch, marker|
       marker.infowindow dispatch[:description]
       marker.title dispatch[:direction]
+      if dispatch.final > Date.today
+        marker.picture({
+        :picture => "assets/wait_small.png",
+        :width   => 50,
+        :height  => 62
+        })
+      elsif dispatch.final == Date.today
+        marker.picture({
+        :picture => "assets/truck_small.png",
+        :width   => 50,
+        :height  => 62
+        })
+      else
+        marker.picture({
+        :picture => "assets/ok_small.png",
+        :width   => 50,
+        :height  => 62
+        })
+      end
     end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @dispatches }
+      format.csv { send_data @dispatches.to_csv }
+      format.xls # { send_data @products.to_csv(col_sep: "\t") }
     end
   end
 
@@ -85,4 +109,33 @@ class DispatchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def gmaps4rails_marker_picture
+    {
+      "picture" => "/images/incon.gif",
+      "width" => 20,
+      "height" => 20,
+      "marker_anchor" => [ 5, 10],
+      "shadow_width" => "110",
+      "shadow_height" => "110",
+      "shadow_anchor" => [5, 10],
+    }
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

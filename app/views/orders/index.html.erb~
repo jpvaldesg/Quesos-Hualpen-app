@@ -1,0 +1,75 @@
+<h1>Listing orders</h1>
+
+
+<div id="orders_chart" style="width: 560px; height: 300px;">
+  
+
+  <script type="text/javascript" charset="utf-8">
+  $(function () {
+  new Highcharts.Chart({
+    chart: { renderTo: 'orders_chart' },
+    title: { text: 'Ordenes por Día' },
+    xAxis: { type: 'datetime' },
+    yAxis: {
+      title: { text: 'Pesos' }
+    },
+    series: [{
+      name: 'ventas',
+      pointInterval: <%= 1.day * 1000 %>,
+      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
+      data: [1, 2, 5, 7, 3]
+    }]
+  });
+});
+  </script>
+
+
+</div>
+
+
+<p>
+  Download:
+  <%= link_to "CSV", products_path(format: "csv") %> |
+  <%= link_to "Excel", products_path(format: "xls") %>
+</p>
+
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Arrivaldate</th>
+    <th>Arrivaltime</th>
+    <th>Rut</th>
+    <th>Addressid</th>
+    <th>Orderdate</th>
+    <th>Sku</th>
+    <th>Qty</th>
+    <th>Unit</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.id %></td>
+    <td><%= order.arrivalDate %></td>
+    <td><%= order.arrivalTime %></td>
+    <td><%= order.rut %></td>
+    <td><%= order.addressId %></td>
+    <td><%= order.orderDate %></td>
+    <td><%= order.sku %></td>
+    <td><%= order.qty %></td>
+    <td><%= order.unit %></td>
+    <td><%= order.state %></td>
+    <td><%= link_to 'Show', order %></td>
+    <td><%= link_to 'Edit', edit_order_path(order) %></td>
+    <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Order', new_order_path %>

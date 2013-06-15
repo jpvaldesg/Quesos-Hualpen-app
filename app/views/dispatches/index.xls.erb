@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Dirección</Data></Cell>
+        <Cell><Data ss:Type="String">Descripción</Data></Cell>
+        <Cell><Data ss:Type="String">lat</Data></Cell>
+        <Cell><Data ss:Type="String">long</Data></Cell>
+        <Cell><Data ss:Type="String">Fecha</Data></Cell>
+      </Row>
+    <% @dispatches.each do |dispatch| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= dispatch.direction %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= dispatch.description %></Data></Cell>
+        <Cell><Data ss:Type="Float"><%= dispatch.latitude %></Data></Cell>
+        <Cell><Data ss:Type="Float"><%= dispatch.longitude %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= dispatch.final %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+
+

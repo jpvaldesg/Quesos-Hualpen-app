@@ -9,6 +9,18 @@ require 'json'
     return listaProductos
   end
 
+  def getSkuInfo(sku)
+    uri="http://iic3103.ing.puc.cl/webservice/integra4/?function=getSkuInfo&key=23qlJSw"
+    response=HTTParty.get(uri)
+    listaProductos = JSON.parse(response.body)
+    listaProductos.each do |producto|
+      if producto["sku"] == sku
+        return producto
+      end
+    end
+    return nil
+  end
+
   def getStock(sku)
     uri="http://iic3103.ing.puc.cl/webservice/integra4/?function=getStock&key=23qlJSw&params=#{sku}"
     response=HTTParty.get(uri)

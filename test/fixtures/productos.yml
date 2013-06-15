@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sku: 1
+  descripcion: MyString
+  precio: 1.5
+  desde: 2013-06-06
+  hasta: 2013-06-06
+
+two:
+  sku: 1
+  descripcion: MyString
+  precio: 1.5
+  desde: 2013-06-06
+  hasta: 2013-06-06

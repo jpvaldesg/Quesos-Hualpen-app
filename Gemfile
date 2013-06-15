@@ -11,8 +11,17 @@ gem 'gmail'
 gem 'twitter'
 gem 'google_drive'
 gem 'gmaps4rails'
+gem 'databasedotcom'
+gem 'vtiger'
+gem 'whenever'
+gem 'yajl-ruby'
+gem 'fastercsv'
 gem 'httparty'
-gem 'json'
+gem 'json' 
+gem "twitter-bootstrap-rails"
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'will_paginate'
 
 
 # Gems used only for assets and not required
@@ -31,7 +40,7 @@ gem 'jquery-rails'
 
 
 #gem 'activerecord-mysql2-adapter'
-gem 'mysql2'
+#gem 'mysql2'
 gem 'therubyracer'
 gem 'execjs'
 # To use ActiveModel has_secure_password
@@ -48,3 +57,5 @@ gem 'execjs'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'thin'
