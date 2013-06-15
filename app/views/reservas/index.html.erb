@@ -4,6 +4,8 @@
       <%= link_to t('.new', :default => t("helpers.links.new")),
             new_reserva_path,
             :class => 'btn btn-primary' %>
+    <%= link_to('CSV', reservas_path(format: "csv"), :class => 'btn btn-info')  %>
+    <%= link_to('Excel', reservas_path(format: "xls"), :class => 'btn btn-success')  %>
   </h1>
 </div>
 <table class="table table-striped">

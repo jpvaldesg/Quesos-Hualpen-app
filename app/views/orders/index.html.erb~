@@ -8,12 +8,13 @@
   $(function () {
   new Highcharts.Chart({
     chart: { renderTo: 'orders_chart' },
-    title: { text: 'Orders by Day' },
+    title: { text: 'Ordenes por Día' },
     xAxis: { type: 'datetime' },
     yAxis: {
-      title: { text: 'Dollars' }
+      title: { text: 'Pesos' }
     },
     series: [{
+      name: 'ventas',
       pointInterval: <%= 1.day * 1000 %>,
       pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
       data: [1, 2, 5, 7, 3]
@@ -24,6 +25,14 @@
 
 
 </div>
+
+
+<p>
+  Download:
+  <%= link_to "CSV", products_path(format: "csv") %> |
+  <%= link_to "Excel", products_path(format: "xls") %>
+</p>
+
 
 <table>
   <tr>

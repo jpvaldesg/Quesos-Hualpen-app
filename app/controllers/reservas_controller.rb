@@ -5,10 +5,13 @@ class ReservasController < ApplicationController
   # GET /reservas.json
   def index
     @reservas = Reserva.paginate(:page => params[:page], :per_page => 10)
+    @reservas_all = Reserva.paginate(:page => params[:page], :per_page => 100)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reservas }
+      format.csv { send_data @reserva_all.to_csv }
+      format.xls # { send_data @reserva.to_csv(col_sep: "\t") }
     end
   end
 
