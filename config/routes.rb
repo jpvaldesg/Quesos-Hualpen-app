@@ -15,7 +15,9 @@ Quesos::Application.routes.draw do
   get "bodega/index"
   get "mailer/readInbox"
   get "stock/show"
+  get "order/run_process"
 
+  match "/order/run_process" => "orders#run_process"
   match "/bodegas" => "bodega#index"
   match "/stock/:sku" => "stock#show"
 

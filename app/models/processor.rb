@@ -28,13 +28,15 @@ class Processor < ActiveRecord::Base
 			getStock(sku).each do |stock|	
 				almacenId = stock["almacenId"]
 				total_disponible+= stock["libre"]
+		        if stock["libre"] > 0
+					almacenes[almacenId] = stock["libre"]
+		        end
 			end
 
 		  #Si hay reservas para el sku del pedido
-		  if Reserva.exists?(:sku => pedido["sku"]) 
-		
+		  if Reserva.exists?(:sku => pedido["sku"]) and Reserva.find_by_sku(pedido["sku"]).qty > 0 
+			
 				reserva = Reserva.find_by_sku(pedido["sku"])
-				
 				
 				#Si Qal es quien hace el pedido
 				if pedido["rut"]== "34.242.924-1" 
@@ -58,29 +60,43 @@ class Processor < ActiveRecord::Base
 						if cantidad_pedida <= reserva.qty
 								reserva.qty-= cantidad_pedida
 								reserva.save
-							else
-								reserva.qty = 0
-								reserva.save
-							end
+			            else
+			              reserva.qty = 0
+			              reserva.save
+			            end
 					end
 
-					almacenes.each_pair do |id,libre|	
-						
-						despacho = 0						
-						if cantidad_pedida <= libre
-							despacho = cantidad_pedida
-						else
-							despacho = libre
-						end
-						cantidad_pedida-= despacho
-						despacharStock(id,sku,despacho)
-						pedido.state = "despachado"
+		      cantidad_final_despacho = cantidad_pedida
+          almacenes.each_pair do |id,libre|
+		            if cantidad_pedida == 0
+		                break
+		            end
+		            despacho = 0
+		            if cantidad_pedida <= libre
+		              despacho = cantidad_pedida
+		            else
+		              despacho = libre
+		            end
+		            cantidad_pedida-= despacho
+		            if id != "102"
+		              if id != 45
+		                moverStock(id,"102",sku, despacho)
+		              else
+		                moverStock(id,"55",sku, despacho)
+		                moverStock("55","102",sku, despacho)
+		              end
+		            end
 
-					end
+		          end
+
+		          despacharStock("102",sku,cantidad_final_despacho)
+		          pedido[:state] = "despachado"
+		          pedido.save
 				
 				#Si no se puede satisfacer el pedido
 				else
 					pedido[:state] = "quebrado"
+					pedido.save
 				end
 			
 			#No hay reservas para el sku pedido
@@ -92,23 +108,39 @@ class Processor < ActiveRecord::Base
 						cantidad_pedida = total_disponible
 					end
 
-					almacenes.each_pair do |id,libre|	
-						
-						despacho = 0						
+          cantidad_final_despacho = cantidad_pedida
+          almacenes.each_pair do |id,libre|
+
+            despacho = 0
+            if cantidad_pedida == 0
+              break
+            end
+
 						if cantidad_pedida <= libre
 							despacho = cantidad_pedida
 						else
 							despacho = libre
 						end
 						cantidad_pedida-= despacho
-						despacharStock(id,sku,despacho)
-						pedido.state = "despachado"
+						if id != "102"
+							if id != 45
+								moverStock(id,"102",sku, despacho)
+							else
+								moverStock(id,"55",sku, despacho)
+								moverStock("55","102",sku, despacho)
+							end
+						end
 
-					end
+          end
+
+          despacharStock("102",sku,cantidad_final_despacho)
+          pedido[:state] = "despachado"
+          pedido.save
 				
 				#Si no se puede satisfacer el pedido
 				else
 					pedido[:state] = "quebrado"
+					pedido.save
 				end
 			end
 		end       

@@ -80,4 +80,14 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def run_process
+    Processor.start()
+    @orders = Order.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @orders }
+    end
+  end
 end

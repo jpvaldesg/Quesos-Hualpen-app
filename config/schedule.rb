@@ -12,9 +12,9 @@
 #   runner "MyModel.some_method"
 #   rake "some:great:rake:task"
 # end
-set :environment, "development"
- every 3.minutes do
-   runner "Processor.start"
- end
+#set :environment, "development"
+ #every 3.minutes do
+ #  runner "Processor.start"
+ #end
 
 # Learn more: http://github.com/javan/whenever
