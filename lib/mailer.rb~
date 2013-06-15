@@ -23,12 +23,13 @@ module Mailer
     #Create "pedido" in DB    
     require 'xmlsimple'
     require 'stocks'
+    extend Stocks
     path = Dir.glob(File.join(Rails.root,'Docs/pedidos/*'))
     path.each do |p|
 
       aux = XmlSimple.xml_in(p, {'KeyAttr' => 'name'})
       sku = aux['Pedidos'][0]['Pedido'][0]['sku'][0]
-      compra = Stocks.getSkuInfo(sku)
+      compra = getSkuInfo(sku)
       venta = Producto.by_sku(sku) 
 
       #Importante: cambiar adressId -> addresId!!!
@@ -41,7 +42,7 @@ module Mailer
 		'qty' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['content'],
 		'unit' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['unidad'],
 		'state' => 'recibido',
-		'cost' => compra["cost"],
+		'cost' => compra["costo"].to_f,
 		'price' => venta["precio"]}
     
       order = Order.new(pedido)

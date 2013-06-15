@@ -1,50 +1,41 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Order -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Arrivaldate:</b>
-  <%= @order.arrivalDate %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:arrivalDate) %>:</strong></dt>
+  <dd><%= @order.arrivalDate %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:arrivalTime) %>:</strong></dt>
+  <dd><%= @order.arrivalTime %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rut) %>:</strong></dt>
+  <dd><%= @order.rut %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:addressId) %>:</strong></dt>
+  <dd><%= @order.addressId %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:orderDate) %>:</strong></dt>
+  <dd><%= @order.orderDate %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sku) %>:</strong></dt>
+  <dd><%= @order.sku %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:qty) %>:</strong></dt>
+  <dd><%= @order.qty %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:unit) %>:</strong></dt>
+  <dd><%= @order.unit %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
+  <dd><%= @order.state %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cost) %>:</strong></dt>
+  <dd><%= @order.cost %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= @order.price %></dd>
+</dl>
 
-<p>
-  <b>Arrivaltime:</b>
-  <%= @order.arrivalTime %>
-</p>
-
-<p>
-  <b>Rut:</b>
-  <%= @order.rut %>
-</p>
-
-<p>
-  <b>Addressid:</b>
-  <%= @order.addressId %>
-</p>
-
-<p>
-  <b>Orderdate:</b>
-  <%= @order.orderDate %>
-</p>
-
-<p>
-  <b>Sku:</b>
-  <%= @order.sku %>
-</p>
-
-<p>
-  <b>Qty:</b>
-  <%= @order.qty %>
-</p>
-
-<p>
-  <b>Unit:</b>
-  <%= @order.unit %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= @order.state %>
-</p>
-
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              orders_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_order_path(@order), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              order_path(@order),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -40,6 +40,12 @@ GEM
     coffee-script-source (1.6.2)
     commonjs (0.2.6)
     daemons (1.1.9)
+    databasedotcom (1.3.2)
+      activesupport
+      json
+      multipart-post (~> 1.1)
+    databasedotcom-rails (1.1.0)
+      databasedotcom
     erubis (2.7.0)
     eventmachine (1.0.3)
     eventmachine (1.0.3-x86-mingw32)
@@ -87,8 +93,6 @@ GEM
     multi_json (1.7.2)
     multi_xml (0.5.3)
     multipart-post (1.2.0)
-    mysql2 (0.3.11)
-    mysql2 (0.3.11-x86-mingw32)
     nokogiri (1.5.9)
     nokogiri (1.5.9-x86-mingw32)
     oauth (0.4.7)
@@ -170,6 +174,7 @@ GEM
     will_paginate (3.0.4)
     xml-simple (1.1.2)
     yajl-ruby (1.1.0)
+    yajl-ruby (1.1.0-x86-mingw32)
 
 PLATFORMS
   ruby
@@ -177,6 +182,8 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  databasedotcom
+  databasedotcom-rails
   execjs
   fastercsv
   gmail
@@ -186,7 +193,6 @@ DEPENDENCIES
   jquery-rails
   json
   less-rails
-  mysql2
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   sqlite3
