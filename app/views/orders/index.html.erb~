@@ -1,6 +1,6 @@
 <%- model_class = Order -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
+  <h1><%=t '.title', :default => "Ordenes" %>
       <%= link_to t('.new', :default => t("helpers.links.new")),
             new_order_path,
             :class => 'btn btn-primary' %>
@@ -95,9 +95,22 @@
         </td>
       </tr>
     <% end %>
+     <div class="container">
+      <div class="row">
+        <div class="span1"></div>
+        <div class="span7">
+
+          <div class="flickr_pagination"><%= will_paginate @reservas, :container => false %> 
+          </div>
+
+        </div>
+        <div class="span1"></div>
+      </div>
+    </div>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_order_path,
-            :class => 'btn btn-primary' %>
+<%= button_to "Run process Start", :action => "run_process", :controller => "order" %>
+<br />
+
+
