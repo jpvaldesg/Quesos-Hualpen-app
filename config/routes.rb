@@ -1,4 +1,7 @@
 Quesos::Application.routes.draw do
+  resources :events
+
+
   resources :productos
 
 
@@ -20,6 +23,8 @@ Quesos::Application.routes.draw do
   match "/order/run_process" => "orders#run_process"
   match "/bodegas" => "bodega#index"
   match "/stock/:sku" => "stock#show"
+
+  root :to => "dispatches#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

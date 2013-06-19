@@ -23,7 +23,12 @@ gem "twitter-bootstrap-rails"
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'will_paginate'
+<<<<<<< HEAD
 #gem 'yahoo_weatherman'
+=======
+gem 'mongoid'
+gem 'yahoo_weatherman'
+>>>>>>> 59edfa6edf3362704f521d544ce32e3278962fb4
 
 
 # Gems used only for assets and not required
