@@ -24,6 +24,8 @@ Quesos::Application.routes.draw do
   match "/bodegas" => "bodega#index"
   match "/stock/:sku" => "stock#show"
 
+  root :to => "dispatches#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
