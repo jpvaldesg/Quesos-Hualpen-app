@@ -1,6 +1,7 @@
 Quesos::Application.routes.draw do
 
 
+
   resources :events do
     collection do
       get 'filter'
@@ -33,6 +34,8 @@ Quesos::Application.routes.draw do
   match "/bodegas" => "bodega#index"
   match "/stock/:sku" => "stock#show"
   match "/event/filter" => "events#filter"
+
+  root :to => "dispatches#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

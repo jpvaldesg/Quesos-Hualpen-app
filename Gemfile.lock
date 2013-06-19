@@ -180,6 +180,8 @@ GEM
       chronic (>= 0.6.3)
     will_paginate (3.0.4)
     xml-simple (1.1.2)
+    yahoo_weatherman (2.0.0)
+      nokogiri
     yajl-ruby (1.1.0)
     yajl-ruby (1.1.0-x86-mingw32)
 
@@ -213,4 +215,5 @@ DEPENDENCIES
   whenever
   will_paginate
   xml-simple
+  yahoo_weatherman
   yajl-ruby

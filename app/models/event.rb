@@ -6,6 +6,7 @@ class Event
 #Event.create(type: "recibido", qty: 1, unit: "UN", rut: "1233-2", orderId: 1232445, sku: "2343455")
 
 
+
   field :type, type: String
   field :qty, type: BigDecimal
   field :unit, type: String
@@ -25,5 +26,4 @@ class Event
       end
     end
   end
-
 end
