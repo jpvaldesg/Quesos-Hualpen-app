@@ -3,10 +3,39 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
-
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render json: @events}
+      format.xls 
+    end
+  end
+
+  def export
+    @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to]).and(type: params[:type])
+    @filtered=@events
+    respond_to do |format|
       format.json { render json: @events }
+      format.csv { send_data @events.to_csv }
+      format.xls 
+    end
+
+  end
+
+  def filter
+    fromHash=params[:from]
+    toHash=params[:to]
+    
+    @from=Time.new(fromHash[:year],fromHash[:month], fromHash[:day], fromHash[:hour], fromHash[:minute])
+    @to=Time.new(toHash[:year],toHash[:month], toHash[:day], toHash[:hour], toHash[:minute])
+    @eventType=params[:type]
+
+    @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to).and(type: @eventType)
+    @filtered=@events
+    respond_to do |format|
+      format.html # filter.html.erb
+      format.json { render json: @events }
+      format.csv { send_data @events.to_csv }
+      format.xls 
     end
   end
 

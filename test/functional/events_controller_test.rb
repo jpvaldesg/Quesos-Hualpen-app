@@ -18,7 +18,9 @@ class EventsControllerTest < ActionController::TestCase
 
   test "should create event" do
     assert_difference('Event.count') do
+
       post :create, event: { orderId: @event.orderId, qty: @event.qty, rut: @event.rut, sku: @event.sku, type: @event.type, unit: @event.unit }
+
     end
 
     assert_redirected_to event_path(assigns(:event))
@@ -35,7 +37,9 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test "should update event" do
+
     put :update, id: @event, event: { orderId: @event.orderId, qty: @event.qty, rut: @event.rut, sku: @event.sku, type: @event.type, unit: @event.unit }
+
     assert_redirected_to event_path(assigns(:event))
   end
 

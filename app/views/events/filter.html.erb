@@ -1,6 +1,12 @@
-<h1>Listing events</h1>
+<h1>Listing events<br>
+<%= form_tag("/events/export.xls", :method => "post") do %>
+<%= hidden_field_tag(:from, @from) %>
+<%= hidden_field_tag(:to, @to) %>
+<%= hidden_field_tag(:type, @eventType) %>
+<%= submit_tag("Excel", :class => 'btn btn-success') %>
+<% end %></h1>
 
-<table>
+  <table>
   <tr>
     <th>Type</th>
     <th>Timestamp</th>
@@ -13,11 +19,10 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @events.each do |event| %>
   <tr>
     <td><%= event.type %></td>
-    <td><%= event.created_at %></td>
+    <td><%= event.created_at.in_time_zone %></td>
     <td><%= event.qty %></td>
     <td><%= event.unit %></td>
     <td><%= event.rut %></td>
@@ -30,11 +35,7 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Event', new_event_path %>
-
-<%= form_tag("/event/filter", :method => "get") do %>
+<%= form_tag("/events/filter", :method => "get") do %>
   <div class="field">
   <%= label_tag(:from, "From:") %>
   <%= select_datetime(nil, :prefix => 'from') %>
@@ -50,3 +51,6 @@
   <%= submit_tag("Filter") %>
 <% end %>
 
+<br />
+
+<%= link_to 'New Event', new_event_path %>

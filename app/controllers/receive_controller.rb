@@ -21,7 +21,9 @@ class ReceiveController < ApplicationController
         config.oauth_token_secret = 'AOWXckklgFPqwxMLrq55NvnTSZHylWmMKNvVP5NG2A'
       end
 
-      str = "El producto sku = #{params[:sku]} ha sido repuesto en la bodega #{params[:almacendId]}"
+      nombre = Producto.by_sku(params[:sku].to_i)
+
+      str = "El producto #{nombre} ha sido repuesto en la bodega #{params[:almacendId]}"
       Twitter.update(str)
     end
     

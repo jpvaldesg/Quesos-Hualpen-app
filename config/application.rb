@@ -61,5 +61,10 @@ module Quesos
     config.assets.version = '1.0'
     #Autoloading lib directory for includindg modules
     config.autoload_paths += %W(#{config.root}/lib)
+    config.generators do |g|
+        g.orm :active_record
+    end
+    config.time_zone = 'Santiago'
+
   end
 end
