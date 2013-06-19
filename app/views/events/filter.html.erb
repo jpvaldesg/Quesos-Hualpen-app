@@ -1,0 +1,56 @@
+<h1>Listing events<br>
+<%= form_tag("/events/export.xls", :method => "post") do %>
+<%= hidden_field_tag(:from, @from) %>
+<%= hidden_field_tag(:to, @to) %>
+<%= hidden_field_tag(:type, @eventType) %>
+<%= submit_tag("Excel", :class => 'btn btn-success') %>
+<% end %></h1>
+
+  <table>
+  <tr>
+    <th>Type</th>
+    <th>Timestamp</th>
+    <th>Qty</th>
+    <th>Unit</th>
+    <th>Rut</th>
+    <th>Orderid</th>
+    <th>Sku</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.type %></td>
+    <td><%= event.created_at.in_time_zone %></td>
+    <td><%= event.qty %></td>
+    <td><%= event.unit %></td>
+    <td><%= event.rut %></td>
+    <td><%= event.orderId %></td>
+    <td><%= event.sku %></td>
+    <td><%= link_to 'Show', event %></td>
+    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= form_tag("/events/filter", :method => "get") do %>
+  <div class="field">
+  <%= label_tag(:from, "From:") %>
+  <%= select_datetime(nil, :prefix => 'from') %>
+  </div>
+  <div class="field">
+  <%= label_tag(:to, "To:") %>
+  <%= select_datetime(Time.now, :prefix => 'to') %>
+  </div>
+  <div class="field">
+  <%= label_tag(:type, "Type:") %>
+  <%= text_field_tag(:type) %>
+  </div>
+  <%= submit_tag("Filter") %>
+<% end %>
+
+<br />
+
+<%= link_to 'New Event', new_event_path %>

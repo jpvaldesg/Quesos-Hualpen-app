@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 
+  timeStamp: 2013-06-17 13:05:21
+  qty: 
+  unit: MyString
+  rut: MyString
+  orderId: 1
+  sku: MyString
+
+two:
+  type: 
+  timeStamp: 2013-06-17 13:05:21
+  qty: 
+  unit: MyString
+  rut: MyString
+  orderId: 1
+  sku: MyString

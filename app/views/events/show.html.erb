@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @event.type %>
+</p>
+
+<p>
+  <b>Timestamp:</b>
+  <%= @event.created_at %>
+</p>
+
+<p>
+  <b>Qty:</b>
+  <%= @event.qty %>
+</p>
+
+<p>
+  <b>Unit:</b>
+  <%= @event.unit %>
+</p>
+
+<p>
+  <b>Rut:</b>
+  <%= @event.rut %>
+</p>
+
+<p>
+  <b>Orderid:</b>
+  <%= @event.orderId %>
+</p>
+
+<p>
+  <b>Sku:</b>
+  <%= @event.sku %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+
