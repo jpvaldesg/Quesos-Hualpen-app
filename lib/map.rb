@@ -15,6 +15,6 @@ module Map
     dis[:gmaps] = 1
 
     dis.save
-
+    return dis
   end
 end
