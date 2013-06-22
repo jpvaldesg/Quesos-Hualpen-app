@@ -66,8 +66,9 @@ class Processor < ActiveRecord::Base
 			            end
 					end
 
-		      cantidad_final_despacho = cantidad_pedida
-          almacenes.each_pair do |id,libre|
+		      		cantidad_final_despacho = cantidad_pedida
+          			almacenes.each_pair do |id,libre|
+		            
 		            if cantidad_pedida == 0
 		                break
 		            end
@@ -108,14 +109,14 @@ class Processor < ActiveRecord::Base
 						cantidad_pedida = total_disponible
 					end
 
-          cantidad_final_despacho = cantidad_pedida
-          almacenes.each_pair do |id,libre|
+          			cantidad_final_despacho = cantidad_pedida
+          			
+          			almacenes.each_pair do |id,libre|
 
-            despacho = 0
-            if cantidad_pedida == 0
-              break
-            end
-
+			            despacho = 0
+			            if cantidad_pedida == 0
+			              break
+			            end
 						if cantidad_pedida <= libre
 							despacho = cantidad_pedida
 						else
@@ -130,12 +131,11 @@ class Processor < ActiveRecord::Base
 								moverStock("55","102",sku, despacho)
 							end
 						end
+          	    	end
 
-          end
-
-          despacharStock("102",sku,cantidad_final_despacho)
-          pedido[:state] = "despachado"
-          pedido.save
+			          despacharStock("102",sku,cantidad_final_despacho)
+			          pedido[:state] = "despachado"
+			          pedido.save
 				
 				#Si no se puede satisfacer el pedido
 				else
