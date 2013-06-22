@@ -11,7 +11,7 @@
       <th><%= model_class.human_attribute_name(:precio) %></th>
       <th><%= model_class.human_attribute_name(:desde) %></th>
       <th><%= model_class.human_attribute_name(:hasta) %></th>
-      <!--<th><%= model_class.human_attribute_name(:created_at) %></th>-->
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
         <td><%= producto.precio %></td>
         <td><%= producto.desde %></td>
         <td><%= producto.hasta %></td>
-        <!--<td><%=l producto.created_at %></td>-->
+        <td><%=l producto.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_producto_path(producto), :class => 'btn btn-mini' %>
