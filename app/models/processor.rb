@@ -93,11 +93,17 @@ class Processor < ActiveRecord::Base
 		          despacharStock("102",sku,cantidad_final_despacho)
 		          pedido[:state] = "despachado"
 		          pedido.save
+		          #########################
+		          #Crear despacho, contabilidad, vtiger, salesforce, datawarehouse
+		          ########################
 				
 				#Si no se puede satisfacer el pedido
 				else
 					pedido[:state] = "quebrado"
 					pedido.save
+					#########################
+		            #Crear  vtiger, salesforce, datawarehouse
+		            ########################
 				end
 			
 			#No hay reservas para el sku pedido
@@ -136,11 +142,17 @@ class Processor < ActiveRecord::Base
 			          despacharStock("102",sku,cantidad_final_despacho)
 			          pedido[:state] = "despachado"
 			          pedido.save
+			          #########################
+		              #Crear despacho, contabilidad, vtiger, salesforce, datawarehouse
+		              ########################
 				
 				#Si no se puede satisfacer el pedido
 				else
 					pedido[:state] = "quebrado"
 					pedido.save
+					#########################
+		            #Crear  vtiger, salesforce, datawarehouse
+		            ########################
 				end
 			end
 		end       
