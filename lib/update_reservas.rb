@@ -5,7 +5,8 @@ module Update_reservas
 
     session = GoogleDrive.login("quesoshualpentest@gmail.com", "quesos123")
 
-    ws = session.spreadsheet_by_title('reservas').worksheets[0]
+    #ws = session.spreadsheet_by_title('reservas').worksheets[0]
+    ws = session.spreadsheet_by_key('0AhRzyWALVmYKdDFkekdkakRMejZ1WEd5MmlEMWgtNFE').worksheets[0]
     
     Reserva.delete_all
 
