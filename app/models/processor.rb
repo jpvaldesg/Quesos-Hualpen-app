@@ -28,7 +28,7 @@ class Processor < ActiveRecord::Base
 			temperatura_actual = temperature_by_place(get_address(pedido[:addressId]))
 			total_disponible = 0
 			almacenes = {}
-			Event.create(type: "recibido", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+			Event.create(type: "recepcion", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
 
 			#Calculamos el total disponible en bodega
@@ -46,7 +46,7 @@ class Processor < ActiveRecord::Base
 				#########################
 	            #Crear  vtiger, salesforce, datawarehouse
 	            ########################
-	            Event.create(type: "quebrado(temp)", qty: temperatura_actual, unit: "°C", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+	            Event.create(type: "quiebre (temp)", qty: temperatura_actual, unit: "°C", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				
 			#Si hay reservas para el sku del pedido
 			elsif Reserva.exists?(:sku => pedido["sku"]) and Reserva.find_by_sku(pedido["sku"]).qty > 0 
@@ -122,7 +122,7 @@ class Processor < ActiveRecord::Base
                           
 		          ########################
 		          Event.create(type: "venta", qty: pedido[:price], unit: "CLP", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
-		          Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: sku)
+		          Event.create(type: "despacho", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: sku)
 
 				#Si no se puede satisfacer el pedido
 				else
@@ -131,7 +131,7 @@ class Processor < ActiveRecord::Base
 					#########################
 		            #Crear  vtiger, salesforce, datawarehouse
 		            ########################
-		            Event.create(type: "quebrado", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+		            Event.create(type: "quiebre", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				end
 
 			#No hay reservas para el sku pedido
@@ -184,7 +184,7 @@ class Processor < ActiveRecord::Base
                               
 		              ########################
 		              Event.create(type: "venta", qty: pedido[:price], unit: "CLP", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
-		              Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+		              Event.create(type: "despacho", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
 				#Si no se puede satisfacer el pedido
 				else
@@ -193,7 +193,7 @@ class Processor < ActiveRecord::Base
 					#########################
 		            #Crear  vtiger, salesforce, datawarehouse
 		            ########################
-		            Event.create(type: "quebrado", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+		            Event.create(type: "quiebre", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
 				end
 			end
