@@ -1,11 +1,14 @@
-<h1>Log Filtrado<br>
+<div class="page-header">
+
+<div class="span3"><h1>Log Filtrado</h1></div>
+  <div class="span1">
 <%= form_tag("/events/export.xls", :method => "post") do %>
 <%= hidden_field_tag(:from, @from) %>
 <%= hidden_field_tag(:to, @to) %>
 <%= hidden_field_tag(:type, @eventType) %>
 <%= submit_tag("Excel", :class => 'btn btn-success') %>
-<% end %></h1>
-
+<% end %></div>
+</div>
   <table class="table table-striped">
   <tr>
     <thead>

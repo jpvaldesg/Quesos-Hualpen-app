@@ -46,7 +46,7 @@ class Processor < ActiveRecord::Base
 				#########################
 	            #Crear  vtiger, salesforce, datawarehouse
 	            ########################
-	            Event.create(type: "quebrado", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+	            Event.create(type: "quebrado(temp)", qty: temperatura_actual, unit: "°C", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				
 			#Si hay reservas para el sku del pedido
 			elsif Reserva.exists?(:sku => pedido["sku"]) and Reserva.find_by_sku(pedido["sku"]).qty > 0 
