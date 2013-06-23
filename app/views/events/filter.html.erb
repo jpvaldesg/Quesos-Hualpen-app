@@ -46,7 +46,7 @@
   </div>
   <div class="field">
   <%= label_tag(:type, "Type:") %>
-  <%= text_field_tag(:type) %>
+  <%= select_tag(:type, options_for_select(@tipos) ) %>
   </div>
   <%= submit_tag("Filter") %>
 <% end %>

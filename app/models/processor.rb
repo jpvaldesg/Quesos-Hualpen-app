@@ -27,6 +27,7 @@ class Processor < ActiveRecord::Base
 			Event.create(type: "recibido", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
 
+
 			#Calculamos el total disponible en bodega
 			getStock(sku).each do |stock|	
 				almacenId = stock["almacenId"]
@@ -36,8 +37,8 @@ class Processor < ActiveRecord::Base
 		        end
 			end
 
-		  #Si hay reservas para el sku del pedido
-		  if Reserva.exists?(:sku => pedido["sku"]) and Reserva.find_by_sku(pedido["sku"]).qty > 0 
+			#Si hay reservas para el sku del pedido
+			if Reserva.exists?(:sku => pedido["sku"]) and Reserva.find_by_sku(pedido["sku"]).qty > 0 
 
 				reserva = Reserva.find_by_sku(pedido["sku"])
 

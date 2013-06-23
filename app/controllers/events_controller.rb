@@ -3,6 +3,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @tipos=[""]
+    @tipos=(@tipos<<Event.all.distinct(:type)).flatten
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events}
@@ -38,6 +40,8 @@ class EventsController < ApplicationController
     end
 
     @filtered=@events
+    @tipos=[""]
+    @tipos=(@tipos<<Event.all.distinct(:type)).flatten
     respond_to do |format|
       format.html # filter.html.erb
       format.json { render json: @events }
