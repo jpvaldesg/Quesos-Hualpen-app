@@ -9,6 +9,7 @@ class Processor < ActiveRecord::Base
 	extend Reservas
 	require 'vtiger'
 	extend Vtiger
+	extend Vtg
 	require 'stocks'
 	extend Stocks
         require 'contabilidad'
