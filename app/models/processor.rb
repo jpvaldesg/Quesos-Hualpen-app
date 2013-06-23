@@ -62,11 +62,14 @@ class Processor < ActiveRecord::Base
 					total_despachable = total_disponible - reserva.qty
 				end
 
+				cantidad_quiebre=0
 				#Si se puede satisfacer el pedido
 				if cantidad_pedida*0.96 <= total_despachable
 
 					if cantidad_pedida >= total_despachable
+						cantidad_quiebre=cantidad_pedida-cantidad_despachable
 						cantidad_pedida = total_despachable
+
 					end
 
 					#Proceso de Despacho
@@ -121,6 +124,9 @@ class Processor < ActiveRecord::Base
                           registrar_ingreso(pedido[:price])
                           
 		          ########################
+		          if cantidad_quiebre >0
+		          	Event.create(type: "quiebre", qty: cantidad_quiebre, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+		          end
 		          Event.create(type: "venta", qty: pedido[:price], unit: "CLP", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 		          Event.create(type: "despacho", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: sku)
 
@@ -131,15 +137,18 @@ class Processor < ActiveRecord::Base
 					#########################
 		            #Crear  vtiger, salesforce, datawarehouse
 		            ########################
-		            Event.create(type: "quiebre", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+		            cantidad_quiebre=cantidad_pedida - total_despachable
+		            Event.create(type: "quiebre", qty: cantidad_quiebre, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				end
 
 			#No hay reservas para el sku pedido
 			else
+				cantidad_quiebre=0
 				#Si se puede satisfacer el pedido
 				if cantidad_pedida*0.96 <= total_disponible
 
 					if cantidad_pedida >= total_disponible
+						cantidad_quiebre=cantidad_pedida - total_disponible
 						cantidad_pedida = total_disponible
 					end
 
@@ -183,6 +192,9 @@ class Processor < ActiveRecord::Base
                               registrar_ingreso(pedido[:price])
                               
 		              ########################
+		              if cantidad_quiebre >0
+		          		Event.create(type: "quiebre", qty: cantidad_quiebre, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+		          	  end
 		              Event.create(type: "venta", qty: pedido[:price], unit: "CLP", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 		              Event.create(type: "despacho", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
@@ -193,7 +205,8 @@ class Processor < ActiveRecord::Base
 					#########################
 		            #Crear  vtiger, salesforce, datawarehouse
 		            ########################
-		            Event.create(type: "quiebre", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+		            cantidad_quiebre=cantidad_pedida - total_disponible
+		            Event.create(type: "quiebre", qty:cantidad_quiebre, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
 				end
 			end
