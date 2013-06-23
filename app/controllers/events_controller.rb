@@ -11,15 +11,17 @@ class EventsController < ApplicationController
   end
 
   def export
-    @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to]).and(type: params[:type])
+    if params[:type]="" or params[:type]=nil
+      @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to])
+    else
+      @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to]).and(type: params[:type])
+    end
     @filtered=@events
     respond_to do |format|
       format.json { render json: @events }
       format.csv { send_data @events.to_csv }
       format.xls 
     end
-
-  end
 
   def filter
     fromHash=params[:from]
