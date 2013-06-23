@@ -109,6 +109,7 @@ class Processor < ActiveRecord::Base
                           registrar_ingreso(pedido[:price])
                           
 		          ########################
+		          Event.create(type: "venta", qty: pedido[:price], unit: "CLP", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 		          Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: sku)
 				
 				#Si no se puede satisfacer el pedido
@@ -170,6 +171,7 @@ class Processor < ActiveRecord::Base
                               registrar_ingreso(pedido[:price])
                               
 		              ########################
+		              Event.create(type: "venta", qty: pedido[:price], unit: "CLP", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 		              Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				
 				#Si no se puede satisfacer el pedido
