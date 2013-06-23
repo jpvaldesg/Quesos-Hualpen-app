@@ -18,7 +18,7 @@ class ReservasController < ApplicationController
   # GET /reservas/1
   # GET /reservas/1.json
   def show
-    @reserva = Reserva.find_by_sku(params[:id])
+    @reserva = Reserva.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

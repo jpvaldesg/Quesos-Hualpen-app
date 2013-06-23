@@ -11,8 +11,10 @@ class Processor < ActiveRecord::Base
 	extend Vtiger
 	require 'stocks'
 	extend Stocks
-    require 'contabilidad'
-    extend Contabilidad
+        require 'contabilidad'
+        extend Contabilidad
+	require 'weather'
+	extend Weather
 	# attr_accessible :title, :body
 	def self.start()
 
@@ -22,9 +24,12 @@ class Processor < ActiveRecord::Base
 
 			sku = pedido["sku"]
 			cantidad_pedida = pedido["qty"].to_f
+			temperatura_max = getSkuInfo(sku)["max_temp"]
+			temperatura_actual = temperature_by_place(get_address(pedido[:addressId]))
 			total_disponible = 0
 			almacenes = {}
 			Event.create(type: "recibido", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+
 
 			#Calculamos el total disponible en bodega
 			getStock(sku).each do |stock|	
@@ -35,8 +40,16 @@ class Processor < ActiveRecord::Base
 		        end
 			end
 
+			if temperatura_actual > temperatura_max
+				pedido[:state] = "quebrado"
+				pedido.save
+				#########################
+	            #Crear  vtiger, salesforce, datawarehouse
+	            ########################
+	            Event.create(type: "quebrado", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+				
 			#Si hay reservas para el sku del pedido
-			if Reserva.exists?(:sku => pedido["sku"]) and Reserva.find_by_sku(pedido["sku"]).qty > 0 
+			elsif Reserva.exists?(:sku => pedido["sku"]) and Reserva.find_by_sku(pedido["sku"]).qty > 0 
 
 				reserva = Reserva.find_by_sku(pedido["sku"])
 

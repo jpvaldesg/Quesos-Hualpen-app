@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.all.order_by([[:created_at, :desc]]).limit(10)
     @tipos=[""]
     @tipos=(@tipos<<Event.all.distinct(:type)).flatten
     respond_to do |format|
@@ -14,9 +14,9 @@ class EventsController < ApplicationController
 
   def export
     if params[:type]=="" or params[:type]==nil
-      @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to])
+      @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to]).order_by([[:created_at, :desc]])
     else
-      @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to]).and(type: params[:type])
+      @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to]).and(type: params[:type]).order_by([[:created_at, :desc]])
     end
     @filtered=@events
     respond_to do |format|
@@ -34,9 +34,9 @@ class EventsController < ApplicationController
     
     if params[:type]=="" or params[:type]==nil
     
-    @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to)
+    @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to).order_by([[:created_at, :desc]])
     else
-    @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to).and(type: params[:type])
+    @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to).and(type: params[:type]).order_by([[:created_at, :desc]])
     end
 
     @filtered=@events

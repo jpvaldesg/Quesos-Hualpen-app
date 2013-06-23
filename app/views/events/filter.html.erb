@@ -6,18 +6,20 @@
 <%= submit_tag("Excel", :class => 'btn btn-success') %>
 <% end %></h1>
 
-  <table>
+  <table class="table table-striped">
   <tr>
-    <th>Tipo</th>
-    <th>Timestamp</th>
-    <th>Cantidad</th>
-    <th>Unidad</th>
-    <th>Rut</th>
-    <th>OrderID</th>
-    <th>Sku</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <thead>
+      <th>Tipo</th>
+      <th>Timestamp</th>
+      <th>Cantidad</th>
+      <th>Unidad</th>
+      <th>Rut</th>
+      <th>OrderID</th>
+      <th>Sku</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
   </tr>
 <% @events.each do |event| %>
   <tr>
@@ -26,12 +28,13 @@
     <td><%= event.qty %></td>
     <td><%= event.unit %></td>
     <td><%= event.rut %></td>
-    <td><%= event.orderId %></td>
+    <td><%= link_to event.orderId , order_path(event.orderId)%></td>
     <td><%= event.sku %></td>
   </tr>
 <% end %>
 </table>
-<br><br><h4>Seleccione un rango de tiempo y tipo de evento</h4>
+<br>
+<br><h4>Seleccione un rango de tiempo y tipo de evento</h4>
 <%= form_tag("/events/filter", :method => "get") do %>
   <div class="field">
   <%= label_tag(:from, "Desde:") %>

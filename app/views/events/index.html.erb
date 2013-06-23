@@ -1,7 +1,8 @@
 <h1>Log de Eventos</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
+  <thead>
     <th>Tipo</th>
     <th>Timestamp</th>
     <th>Cantidad</th>
@@ -9,9 +10,8 @@
     <th>Rut</th>
     <th>OrderID</th>
     <th>Sku</th>
-    <th></th>
-    <th></th>
-    <th></th>
+  </thead>
+
   </tr>
 
 <% @events.each do |event| %>
@@ -21,17 +21,14 @@
     <td><%= event.qty %></td>
     <td><%= event.unit %></td>
     <td><%= event.rut %></td>
-    <td><%= event.orderId %></td>
+    <td><%= link_to event.orderId , order_path(event.orderId)%></td>
     <td><%= event.sku %></td>
-    <td><%#= link_to 'Show', event %></td>
-    <td><%#= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-<br><br><h4>Seleccione un rango de tiempo y tipo de evento</h4>
+<p>* Se muestran los últimos 10 eventos</p>
+<br><h4>Seleccione un rango de tiempo y tipo de evento</h4>
 <%= form_tag("/event/filter", :method => "get") do %>
   <div class="field">
   <%= label_tag(:from, "Desde:") %>
