@@ -22,7 +22,7 @@ class Processor < ActiveRecord::Base
 			pedidos.each do |pedido|
 				
 				sku = pedido["sku"]
-				cantidad_pedida = pedido["qty"]
+				cantidad_pedida = pedido["qty"].to_f
 				total_disponible = 0
 				almacenes = {}
 				Event.create(type: "recibido", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
