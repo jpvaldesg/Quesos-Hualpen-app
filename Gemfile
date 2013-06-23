@@ -25,7 +25,7 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem 'will_paginate'
 gem 'mongoid'
 gem 'yahoo_weatherman'
-#gem 'mysql2'
+gem 'mysql2'
 
 
 # Gems used only for assets and not required
