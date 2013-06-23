@@ -34,22 +34,22 @@ module Mailer
 
       #Importante: cambiar adressId -> addresId!!!
       pedido = {'arrivalDate' => aux['Pedidos'][0]['fecha'],
-            		'arrivalTime' => aux['Pedidos'][0]['hora'],
-            		'rut' => aux['Pedidos'][0]['Pedido'][0]['rut'][0],
-            		'addressId' => aux['Pedidos'][0]['Pedido'][0]['direccionId'][0],
-            		'orderDate' => aux['Pedidos'][0]['Pedido'][0]['fecha'][0],
-            		'sku' => aux['Pedidos'][0]['Pedido'][0]['sku'][0],
-            		'qty' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['content'],
-            		'unit' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['unidad'],
-            		'state' => 'recibido',
-            		'cost' => compra["costo"].to_f,
-            		'price' => venta["precio"]}
+  	  'arrivalTime' => aux['Pedidos'][0]['hora'],
+  		'rut' => aux['Pedidos'][0]['Pedido'][0]['rut'][0],
+  		'addressId' => aux['Pedidos'][0]['Pedido'][0]['direccionId'][0],
+  		'orderDate' => aux['Pedidos'][0]['Pedido'][0]['fecha'][0],
+  		'sku' => aux['Pedidos'][0]['Pedido'][0]['sku'][0],
+  		'qty' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['content'],
+  		'unit' => aux['Pedidos'][0]['Pedido'][0]['cantidad'][0]['unidad'],
+  		'state' => 'recibido',
+  		'cost' => compra["costo"].to_f,
+  		'price' => venta["precio"]}
     
       order = Order.new(pedido)
       order.save
       File.delete(p)
-      retorno<<pedido
-      hola = 7
+      retorno<<order
+
     end
 
     return retorno
