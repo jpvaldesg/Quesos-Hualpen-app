@@ -19,7 +19,7 @@ class Processor < ActiveRecord::Base
 	def self.start()
 
 		pedidos=load_orders()	    
-
+		vtig= Vtg.new()
 		pedidos.each do |pedido|
 
 			sku = pedido["sku"]
@@ -29,7 +29,8 @@ class Processor < ActiveRecord::Base
 			total_disponible = 0
 			almacenes = {}
 			Event.create(type: "recepcion", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
-
+			#VTIGER: add_order(order_id, adate,atime,rut,addressid,odate,sku,qty,unit)
+			vtig.add_order(pedido[:id],pedido[:arrivalDate],pedido[:arrivalTime],pedido[:rut],pedido[:addressId],pedido[:orderDate],pedido[:sku],pedido[:qty],pedido[:unit])
 
 			#Calculamos el total disponible en bodega
 			getStock(sku).each do |stock|	
@@ -43,6 +44,7 @@ class Processor < ActiveRecord::Base
 			if temperatura_actual > temperatura_max
 				pedido[:state] = "quebrado"
 				pedido.save
+								
 				#########################
 	            #Crear  vtiger, salesforce, datawarehouse
 	            ########################
@@ -122,6 +124,7 @@ class Processor < ActiveRecord::Base
                           #Contabilidad
                           registrar_costo(pedido[:cost])
                           registrar_ingreso(pedido[:price])
+
                           
 		          ########################
 		          if cantidad_quiebre >0
@@ -129,6 +132,7 @@ class Processor < ActiveRecord::Base
 		          end
 		          Event.create(type: "venta", qty: pedido[:price], unit: "CLP", rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 		          Event.create(type: "despacho", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: sku)
+		          
 
 				#Si no se puede satisfacer el pedido
 				else
@@ -139,6 +143,7 @@ class Processor < ActiveRecord::Base
 		            ########################
 		            cantidad_quiebre=cantidad_pedida - total_despachable
 		            Event.create(type: "quiebre", qty: cantidad_quiebre, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+
 				end
 
 			#No hay reservas para el sku pedido
@@ -210,6 +215,8 @@ class Processor < ActiveRecord::Base
 
 				end
 			end
-		end       
+		#VTIGER
+		vtig.update_order(pedido[:id],pedido[:state])       
+		end
 	end
 end
