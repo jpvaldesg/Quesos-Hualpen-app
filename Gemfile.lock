@@ -99,6 +99,7 @@ GEM
     multi_json (1.7.2)
     multi_xml (0.5.3)
     multipart-post (1.2.0)
+    mysql2 (0.3.11)
     nokogiri (1.5.9)
     nokogiri (1.5.9-x86-mingw32)
     oauth (0.4.7)
@@ -203,6 +204,7 @@ DEPENDENCIES
   json
   less-rails
   mongoid
+  mysql2
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   sqlite3
