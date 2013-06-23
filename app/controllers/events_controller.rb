@@ -29,9 +29,14 @@ class EventsController < ApplicationController
     
     @from=Time.new(fromHash[:year],fromHash[:month], fromHash[:day], fromHash[:hour], fromHash[:minute])
     @to=Time.new(toHash[:year],toHash[:month], toHash[:day], toHash[:hour], toHash[:minute])
+    
+    if params[:type]="" or params[:type]=nil
     @eventType=params[:type]
-
+    @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to)
+    else
     @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to).and(type: @eventType)
+    end
+
     @filtered=@events
     respond_to do |format|
       format.html # filter.html.erb
