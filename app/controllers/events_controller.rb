@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   end
 
   def export
-    if params[:type]="" or params[:type]=nil
+    if params[:type]=="" or params[:type]==nil
       @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to])
     else
       @events = Event.where(:created_at.gte => params[:from]).and(:created_at.lte => params[:to]).and(type: params[:type])
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
       format.csv { send_data @events.to_csv }
       format.xls 
     end
-
+  end
   def filter
     fromHash=params[:from]
     toHash=params[:to]
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     @from=Time.new(fromHash[:year],fromHash[:month], fromHash[:day], fromHash[:hour], fromHash[:minute])
     @to=Time.new(toHash[:year],toHash[:month], toHash[:day], toHash[:hour], toHash[:minute])
     
-    if params[:type]="" or params[:type]=nil
+    if params[:type]=="" or params[:type]==nil
     @eventType=params[:type]
     @events = Event.where(:created_at.gte => @from).and(:created_at.lte => @to)
     else
