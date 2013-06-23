@@ -11,6 +11,8 @@ class Processor < ActiveRecord::Base
 	extend Vtiger
 	require 'stocks'
 	extend Stocks
+        require 'contabilidad'
+        extend Contabilidad
 	# attr_accessible :title, :body
 	def self.start()
 		
@@ -96,6 +98,16 @@ class Processor < ActiveRecord::Base
 		          pedido.save
 		          #########################
 		          #Crear despacho, contabilidad, vtiger, salesforce, datawarehouse
+                          
+                          #Crear despacho
+                          direccion=get_address(pedido[:addressId]) #Obtener la dirección del sistema de direcciones
+                          mensaje="Se han despachado #{pedido[:qty]} #{pedido[:unit]} del producto sku:#{pedido[:sku]}"
+                          new_marker(direccion, mensaje, pedido[:orderDate]) #Crear la tupla en la tabla Dispatches
+                          
+                          #Contabilidad
+                          registrar_costo(pedido[:cost])
+                          registrar_ingreso(pedido[:price])
+                          
 		          ########################
 		          Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: sku)
 				
@@ -147,6 +159,16 @@ class Processor < ActiveRecord::Base
 			          pedido.save
 			          #########################
 		              #Crear despacho, contabilidad, vtiger, salesforce, datawarehouse
+                          
+                              #Crear despacho
+                              direccion=get_address(pedido[:addressId]) #Obtener la dirección del sistema de direcciones
+                              mensaje="Se han despachado #{pedido[:qty]} #{pedido[:unit]} del producto sku:#{pedido[:sku]}"
+                              new_marker(direccion, mensaje, pedido[:orderDate]) #Crear la tupla en la tabla Dispatches
+                              
+                              #Contabilidad
+                              registrar_costo(pedido[:cost])
+                              registrar_ingreso(pedido[:price])
+                              
 		              ########################
 		              Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				
