@@ -26,8 +26,6 @@ class Processor < ActiveRecord::Base
 			almacenes = {}
 			Event.create(type: "recibido", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
-
-
 			#Calculamos el total disponible en bodega
 			getStock(sku).each do |stock|	
 				almacenId = stock["almacenId"]

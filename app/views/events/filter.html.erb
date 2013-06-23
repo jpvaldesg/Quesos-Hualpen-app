@@ -1,4 +1,4 @@
-<h1>Listing events<br>
+<h1>Log Filtrado<br>
 <%= form_tag("/events/export.xls", :method => "post") do %>
 <%= hidden_field_tag(:from, @from) %>
 <%= hidden_field_tag(:to, @to) %>
@@ -8,12 +8,12 @@
 
   <table>
   <tr>
-    <th>Type</th>
+    <th>Tipo</th>
     <th>Timestamp</th>
-    <th>Qty</th>
-    <th>Unit</th>
+    <th>Cantidad</th>
+    <th>Unidad</th>
     <th>Rut</th>
-    <th>Orderid</th>
+    <th>OrderID</th>
     <th>Sku</th>
     <th></th>
     <th></th>
@@ -28,29 +28,24 @@
     <td><%= event.rut %></td>
     <td><%= event.orderId %></td>
     <td><%= event.sku %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
+<br><br><h4>Seleccione un rango de tiempo y tipo de evento</h4>
 <%= form_tag("/events/filter", :method => "get") do %>
   <div class="field">
-  <%= label_tag(:from, "From:") %>
+  <%= label_tag(:from, "Desde:") %>
   <%= select_datetime(nil, :prefix => 'from') %>
   </div>
   <div class="field">
-  <%= label_tag(:to, "To:") %>
+  <%= label_tag(:to, "Hasta:") %>
   <%= select_datetime(Time.now, :prefix => 'to') %>
   </div>
   <div class="field">
-  <%= label_tag(:type, "Type:") %>
+  <%= label_tag(:type, "Tipo:") %>
   <%= select_tag(:type, options_for_select(@tipos) ) %>
   </div>
-  <%= submit_tag("Filter") %>
+  <%= submit_tag("Filtrar") %>
 <% end %>
 
 <br />
-
-<%= link_to 'New Event', new_event_path %>

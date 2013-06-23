@@ -4,10 +4,10 @@
   <tr>
     <th>Tipo</th>
     <th>Timestamp</th>
-    <th>Qty</th>
+    <th>Cantidad</th>
     <th>Unidad</th>
     <th>Rut</th>
-    <th>Orderid</th>
+    <th>OrderID</th>
     <th>Sku</th>
     <th></th>
     <th></th>
@@ -31,22 +31,20 @@
 </table>
 
 <br />
-
-<%= link_to 'Nuevo Registro', new_event_path %>
-
+<br><br><h4>Seleccione un rango de tiempo y tipo de evento</h4>
 <%= form_tag("/event/filter", :method => "get") do %>
   <div class="field">
-  <%= label_tag(:from, "From:") %>
+  <%= label_tag(:from, "Desde:") %>
   <%= select_datetime(nil, :prefix => 'from') %>
   </div>
   <div class="field">
-  <%= label_tag(:to, "To:") %>
+  <%= label_tag(:to, "Hasta:") %>
   <%= select_datetime(Time.now, :prefix => 'to') %>
   </div>
   <div class="field">
-  <%= label_tag(:type, "Type:") %>
+  <%= label_tag(:type, "Tipo:") %>
   <%= select_tag(:type, options_for_select(@tipos) ) %>
   </div>
-  <%= submit_tag("Filter") %>
+  <%= submit_tag("Filtrar") %>
 <% end %>
 
