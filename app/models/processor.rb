@@ -22,6 +22,7 @@ class Processor < ActiveRecord::Base
 			cantidad_pedida = pedido["qty"]
 			total_disponible = 0
 			almacenes = {}
+			Event.create(type: "recibido", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 
 
 			#Calculamos el total disponible en bodega
@@ -96,6 +97,7 @@ class Processor < ActiveRecord::Base
 		          #########################
 		          #Crear despacho, contabilidad, vtiger, salesforce, datawarehouse
 		          ########################
+		          Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: sku)
 				
 				#Si no se puede satisfacer el pedido
 				else
@@ -104,6 +106,7 @@ class Processor < ActiveRecord::Base
 					#########################
 		            #Crear  vtiger, salesforce, datawarehouse
 		            ########################
+		            Event.create(type: "quebrado", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				end
 			
 			#No hay reservas para el sku pedido
@@ -145,6 +148,7 @@ class Processor < ActiveRecord::Base
 			          #########################
 		              #Crear despacho, contabilidad, vtiger, salesforce, datawarehouse
 		              ########################
+		              Event.create(type: "despachado", qty: cantidad_final_despacho, unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 				
 				#Si no se puede satisfacer el pedido
 				else
@@ -153,6 +157,8 @@ class Processor < ActiveRecord::Base
 					#########################
 		            #Crear  vtiger, salesforce, datawarehouse
 		            ########################
+		            Event.create(type: "quebrado", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
+
 				end
 			end
 		end       
