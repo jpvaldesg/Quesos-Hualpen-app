@@ -6,10 +6,11 @@ module Mailer
     require 'gmail'
     
     gmail = Gmail.connect('quesoshualpentest', 'quesos123')
+    #gmail = Gmail.connect('g4tallerint', 'grupocuatro')
     @state = 'Conectado'
     #@num = gmail.inbox.count
-    #gmail.inbox.find(:unread).each do |email|
     gmail.inbox.find(:unread).each do |email|
+    #gmail.inbox.find(:unread, :after => Date.parse("2013-06-22")).each do |email|
       folder = File.join(Rails.root,'Docs/pedidos')
       email.message.attachments.each do |f|
         File.write(File.join(folder, email.subject), f.body.decoded)
