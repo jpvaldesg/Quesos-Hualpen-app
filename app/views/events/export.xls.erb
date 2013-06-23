@@ -17,7 +17,7 @@
       </Row>
     <% @filtered.each do |event| %>
       <Row>
-        <Cell><Data ss:Type="String"><%= event.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= event.created_at.strftime("%Y-%m-%d %H:%M:%S")%></Data></Cell>
         <Cell><Data ss:Type="String"><%= event.type %></Data></Cell>
         <Cell><Data ss:Type="Number"><%= event.qty %></Data></Cell>
         <Cell><Data ss:Type="String"><%= event.unit %></Data></Cell>
