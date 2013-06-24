@@ -215,7 +215,7 @@ class Processor < ActiveRecord::Base
 				end
 			end
 		#VTIGER
-		add_order(pedido[:id],pedido[:arrivalDate],pedido[:arrivalTime],pedido[:rut],get_address(pedido[:addressId]),pedido[:orderDate],pedido[:sku],pedido[:qty],pedido[:unit])
+		add_order(pedido[:id],pedido[:state],pedido[:arrivalDate],pedido[:arrivalTime],pedido[:rut],get_address(pedido[:addressId]),pedido[:orderDate],pedido[:sku],pedido[:qty],pedido[:unit])
 		#update_order(pedido[:id],pedido[:state])       
 		end
 	end

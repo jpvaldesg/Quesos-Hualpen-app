@@ -7,7 +7,7 @@ require 'vtiger'
 require 'optparse'
 require 'java' if RUBY_PLATFORM =~ /java/
 require 'pp'
-  def add_order(order_id, adate,atime,rut,addressid,odate,sku,qty,unit)
+  def add_order(order_id, status ,adate,atime,rut,addressid,odate,sku,qty,unit)
 
 arg_hash={
   :username => 'admin',
@@ -86,7 +86,7 @@ object_map = {
 'ship_street'=> addressid,
 'cf_647'=> adate,
 'cf_648'=> atime,
-'cf_649'=> 'Recibido',
+'cf_649'=> status,
 'cf_653'=> order_id
 }
 
