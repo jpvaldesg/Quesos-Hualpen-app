@@ -135,7 +135,7 @@ arg_hash={
               name=order_id
              puts "in query element by field #{field} #{element} name: #{name}"
                     action_string=ERB::Util.url_encode("select id from #{element} where #{field} like '#{name}';")
-                    res = cmd.http_ask_get(self.cmd.endpoint_url+"operation=query&sessionName=#{cmd.session_name}&query="+action_string)
+                    res = cmd.http_ask_get(cmd.endpoint_url+"operation=query&sessionName=#{cmd.session_name}&query="+action_string)
                     values=res["result"][0] if res["success"]==true   #comes back as array
                     success = true
                   
