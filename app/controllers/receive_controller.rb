@@ -3,8 +3,8 @@ class ReceiveController < ApplicationController
    
     require 'twitter'
     
-    #@quebrado = 0
-    @quebrado = 1
+    @quebrado = 0
+    #@quebrado = 1
 
     Order.quebrado.each do |quiebre|
       if quiebre[:sku] == params[:sku].to_f

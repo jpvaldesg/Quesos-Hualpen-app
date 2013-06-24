@@ -4,7 +4,7 @@ class DispatchesController < ApplicationController
   # GET /dispatches
   # GET /dispatches.json
   def index
-    @dispatches = Dispatch.paginate(:page => params[:page], :per_page => 10)
+    @dispatches = Dispatch.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
 
     #@json = Dispatch.date_ok.to_gmaps4rails do |dispatch, marker|
     @json = Dispatch.all.to_gmaps4rails do |dispatch, marker|

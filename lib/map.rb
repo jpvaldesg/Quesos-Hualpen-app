@@ -3,10 +3,10 @@ module Map
   
     require 'gmaps4rails'
 	
-	begin
-	Gmaps4Rails.set_gmaps4rails_options!({:validation => false})
+	#begin
+	#Gmaps4Rails.set_gmaps4rails_options!({:validation => false})
     coordenates = Gmaps4rails.geocode(dir)
-    if coordenates != nil
+    #if coordenates != nil
       dis = Dispatch.new()
 
       dis[:direction] = dir
@@ -18,12 +18,12 @@ module Map
       dis[:gmaps] = 1
 
       dis.save
-	end
+	#end
     return dis
 	
-	rescue
-	return nil
+	#rescue
+	#return nil
 	
-	end
+	#end
   end
 end
