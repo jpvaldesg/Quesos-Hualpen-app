@@ -1,7 +1,5 @@
 module Vtiger2 
 
-
-  def add_order(order_id, adate,atime,rut,addressid,odate,sku,qty,unit)
 require 'yaml'
 require 'rubygems'
 gem 'vtiger'
@@ -9,6 +7,8 @@ require 'vtiger'
 require 'optparse'
 require 'java' if RUBY_PLATFORM =~ /java/
 require 'pp'
+  def add_order(order_id, adate,atime,rut,addressid,odate,sku,qty,unit)
+
 arg_hash={
   :username => 'admin',
   :key => 'Lrl63myYMRkXfwI3',
@@ -103,14 +103,6 @@ end
 end
   def update_order(order_id,new_state)
 
-require 'yaml'
-require 'rubygems'
-gem 'vtiger'
-require 'vtiger'
-require 'optparse'
-require 'java' if RUBY_PLATFORM =~ /java/
-require 'pp'
-
 arg_hash={
   :username => 'admin',
   :key => 'Lrl63myYMRkXfwI3',
@@ -168,5 +160,4 @@ end
       
 
 
-end
 end

@@ -7,9 +7,8 @@ class Processor < ActiveRecord::Base
 	extend ClientAddress
 	require 'reservas'
 	extend Reservas
-	require 'vtiger'
-	extend Vtiger
-	extend Vtg
+	require 'vtiger2'
+	extend Vtiger2
 	require 'stocks'
 	extend Stocks
         require 'contabilidad'
@@ -20,7 +19,6 @@ class Processor < ActiveRecord::Base
 	def self.start()
 
 		pedidos=load_orders()	    
-		vtig= Vtg.new()
 		pedidos.each do |pedido|
 
 			sku = pedido["sku"]
@@ -31,7 +29,7 @@ class Processor < ActiveRecord::Base
 			almacenes = {}
 			Event.create(type: "recepcion", qty: pedido[:qty], unit: pedido[:unit], rut: pedido[:rut], orderId: pedido[:id], sku: pedido[:sku])
 			#VTIGER: add_order(order_id, adate,atime,rut,addressid,odate,sku,qty,unit)
-			vtig.add_order(pedido[:id],pedido[:arrivalDate],pedido[:arrivalTime],pedido[:rut],pedido[:addressId],pedido[:orderDate],pedido[:sku],pedido[:qty],pedido[:unit])
+			add_order(pedido[:id],pedido[:arrivalDate],pedido[:arrivalTime],pedido[:rut],pedido[:addressId],pedido[:orderDate],pedido[:sku],pedido[:qty],pedido[:unit])
 
 			#Calculamos el total disponible en bodega
 			getStock(sku).each do |stock|	
@@ -217,7 +215,7 @@ class Processor < ActiveRecord::Base
 				end
 			end
 		#VTIGER
-		vtig.update_order(pedido[:id],pedido[:state])       
+		update_order(pedido[:id],pedido[:state])       
 		end
 	end
 end
