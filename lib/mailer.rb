@@ -10,11 +10,11 @@ module Mailer
     @state = 'Conectado'
     i=0
     #@num = gmail.inbox.count
-    gmail.inbox.find(:unread).each do |email|
-    #gmail.inbox.find(:unread, :after => Date.parse("2013-06-22")).each do |email|
+    #gmail.inbox.find(:unread).each do |email|
+    gmail.inbox.find(:unread, :after => Date.parse("2013-06-22")).each do |email|
       folder = File.join(Rails.root,'Docs/pedidos')
       email.message.attachments.each do |f|
-        File.write(File.join(folder, i), f.body.decoded)
+        File.write(File.join(folder, i.to_s), f.body.decoded)
         i=i+1
       end
     end
