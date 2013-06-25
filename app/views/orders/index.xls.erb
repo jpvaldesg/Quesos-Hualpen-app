@@ -19,19 +19,19 @@
         <Cell><Data ss:Type="String">Costo</Data></Cell>
         <Cell><Data ss:Type="String">Precio</Data></Cell>
       </Row>
-    <% @orders.each do |order| %>
+    <% Order.all.each do |order| %>
       <Row>
-        <Cell><Data ss:Type="Date"><%= order.arrivalDate %></Data></Cell>
-        <Cell><Data ss:Type="Time"><%= order.arrivalTime %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.arrivalDate %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.arrivalTime %></Data></Cell>
         <Cell><Data ss:Type="String"><%= order.rut %></Data></Cell>
         <Cell><Data ss:Type="String"><%= order.addressId %></Data></Cell>
-        <Cell><Data ss:Type="Date"><%= order.orderDate %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= order.sku %></Data></Cell>
-        <Cell><Data ss:Type="Decimal"><%= order.qty %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.orderDate %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.sku %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.qty %></Data></Cell>
         <Cell><Data ss:Type="String"><%= order.unit %></Data></Cell>
         <Cell><Data ss:Type="String"><%= order.state %></Data></Cell>
-        <Cell><Data ss:Type="Float"><%= order.cost %></Data></Cell>
-        <Cell><Data ss:Type="Float"><%= order.price %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.cost %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= order.price %></Data></Cell>
       </Row>
     <% end %>
     </Table>
